@@ -1,14 +1,25 @@
-import React from 'react';
+import React from "react";
+import { connect } from "dva";
+import styles from "./Example.css";
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      greeting: "Hello World"
+    };
+  }
+  componentDidMount() {}
+  componentWillUnmount() {}
 
-const Example = () => {
-  return (
-    <div>
-      Example
-    </div>
-  );
-};
+  render() {
+    return <div className={styles.base}>{this.state.greeting}</div>;
+  }
+}
 
-Example.propTypes = {
-};
+Example.propTypes = {};
 
-export default Example;
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps)(Example);
