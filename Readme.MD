@@ -10,7 +10,7 @@
 
 ```bash
 # install dependencies
-yarn
+npm install
 
 # start project
 
