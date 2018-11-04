@@ -3,7 +3,7 @@ export default {
 
   state: {
     login: false,
-    gender: "male",
+    gender: "",
     floor: "0",
     currentLocation: { lat: "", lng: "" },
     currentToiletSelected: {},
