@@ -1,18 +1,114 @@
 import React from "react";
 import { connect } from "dva";
+// import PropTypes from 'prop-types';
 import styles from "./SideBar.css";
+// import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
+// import Button from '@material-ui/core/Button';
+// import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+// import Grow from '@material-ui/core/Grow';
+// import Paper from '@material-ui/core/Paper';
+// import Popper from '@material-ui/core/Popper';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import MenuList from '@material-ui/core/MenuList';
+// import { withStyles } from '@material-ui/core/styles';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+import MenuIcon from '@material-ui/icons/Menu';
+import ProfileIcon from '@material-ui/icons/AccountCircle';
+import ReportIcon from '@material-ui/icons/ReportProblem';
+import DiscoveryIcon from '@material-ui/icons/AddLocation';
+import LogoutIcon from '@material-ui/icons/Reply';
+import { Drawer } from "antd-mobile";
+import { routerRedux } from "dva/router";
+
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      sideMenuOpen: this.props.sideMenuOpen
+    };
   }
-  componentDidMount() {}
-  componentWillUnmount() {}
 
   render() {
-    return <div className={styles.base}>Hello World</div>;
+    const sidebar = (
+      <div className={styles.sidebar__background}><div><span className={styles.menuButton}>Menu</span><MenuIcon className={styles.menuIcon}/></div>
+        <div className={styles.sidebar__menu}>
+          <div
+            className={styles.profile__text}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.dispatch(routerRedux.push({ pathname: "/profile" }));
+            }}
+          ><ProfileIcon />
+            Profile
+          </div>
+          <div
+            className={styles.report__text}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.dispatch(routerRedux.push({ pathname: "/report" }));
+            }}
+          ><ReportIcon />
+            Report
+          </div>
+          <div
+            className={styles.discovery__text}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.dispatch(routerRedux.push({ pathname: "/new_discovery" }));
+            }}
+          ><DiscoveryIcon />
+            New Discovery
+          </div>
+          <div
+            className={styles.logout__text}
+            onClick={e => {
+              e.stopPropagation();
+              localStorage.clear()
+              this.props.dispatch(routerRedux.push({ pathname: "/logout" }));
+            }}
+          ><LogoutIcon />
+            Logout</div>
+        </div>
+      </div>
+    );
+    return (
+      <div>
+        <div
+          className={styles.button__menu}
+          onClick={() => this.onOpenChange()}
+        />
+        
+        <Drawer
+          className="my-drawer"
+          style={{
+            minHeight: document.documentElement.clientHeight,
+            fontSize: 10
+          }}
+          contentStyle={{ color: "#A6A6A6", textAlign: "center" }}
+          sidebar={sidebar}
+          open={this.state.sideMenuOpen}
+          onOpenChange={() => this.onOpenChange()}
+          children={<div />}
+        />
+      </div>
+    );
+  }
+
+  onOpenChange() {
+    if (this.state.buttonStyle !== styles.button__animated) {
+      this.setState({
+        sideMenuOpen: !this.state.sideMenuOpen,
+        buttonStyle: styles.button__animated
+      });
+    } else {
+      this.setState({
+        sideMenuOpen: !this.state.sideMenuOpen,
+        buttonStyle: styles.button__animated_reverse
+      });
+    }
   }
 }
+
 
 SideBar.propTypes = {};
 
