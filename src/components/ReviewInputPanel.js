@@ -4,6 +4,7 @@ import { Rate } from 'antd';
 import 'antd/dist/antd.css';
 import styled from "styled-components";
 import { Input } from 'antd';
+import generateReviewList from './ReviewListItem';
 
 const { TextArea } = Input;
 
@@ -115,6 +116,7 @@ class ReviewInputPanel extends React.Component {
         reviewList: this.state.activeReviewList
       }
     })*/
+    
     console.log(`Rating: ${this.props.toiletData.currentRating}`);
     console.log(`Review: ${this.props.toiletData.currentReview}`);
     //console.log(`Review List: ${this.props.toiletData.reviewList}`);

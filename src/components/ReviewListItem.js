@@ -3,15 +3,15 @@ import { connect } from "dva";
 import 'antd/dist/antd.css';
 import { List, Avatar } from 'antd';
 import { Rate } from 'antd';
-import ReviewInputPanel from './ReviewInputPanel';
+
 
 
 class ReviewListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRating: this.props.toiletData.currentRating,
-      activeReview: this.props.toiletData.currentReview,
+      //activeRating: this.props.toiletData.currentRating,
+      //activeReview: this.props.toiletData.currentReview,
       activeReviewList: this.props.toiletData.reviewList
     };
   }
@@ -21,12 +21,10 @@ class ReviewListItem extends React.Component {
 
   componentWillUnmount() {}
 
-  async generateReviewList(reviewItem) {
-    var rating = this.state.activeRating
-    var review = this.state.activeReview
-    var reviewItem = [rating, review]
-
-    this.setState({ activeReviewList: [...this.state.activeReviewList, reviewItem] })
+  async generateReviewList() {
+    let rating = this.props.toiletData.currentRating
+    let review = this.props.toiletData.currentReview
+    this.setState({ activeReviewList: [...this.state.activeReviewList, rating, review] })
 
     this.props.dispatch({
       type: "toiletData/save",
@@ -39,7 +37,7 @@ class ReviewListItem extends React.Component {
 
   //fixing display
   render() {
-    var { activeReviewList } = this.state.activeReviewList;
+    let { activeReviewList } = this.state.activeReviewList;
     return (
       <List
       //className="demo-loadmore-list"
@@ -50,10 +48,10 @@ class ReviewListItem extends React.Component {
           <List.Item.Meta
             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
             title="insert username"
-            description={item.review}
+            description={item.rating}
           />
           <div>Rating</div>
-          <Rate disabled allowHalf defaultValue={2.5} value={item.rating}/>
+          <Rate disabled allowHalf defaultValue={2.5} value={item.review}/>
         </List.Item>
       )}
     />
