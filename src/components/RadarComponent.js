@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "dva";
-class Radar extends React.Component {
+import Radar from "react-radar-screen";
+class RadarComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -9,7 +10,7 @@ class Radar extends React.Component {
   componentWillUnmount() {}
 
   render() {
-    return <div className={styles.base}>Hello World</div>;
+    return <div>Hello World</div>;
   }
 }
 
@@ -19,4 +20,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps)(Radar);
+export default connect(mapStateToProps)(RadarComponent);
