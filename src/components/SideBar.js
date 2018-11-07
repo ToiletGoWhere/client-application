@@ -14,6 +14,8 @@ import styles from "./SideBar.css";
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuIcon from '@material-ui/icons/Menu';
 import ProfileIcon from '@material-ui/icons/AccountCircle';
+import RegisterIcon from '@material-ui/icons/AccountBox';
+import LoginIcon from '@material-ui/icons/ExitToApp';
 import ReportIcon from '@material-ui/icons/ReportProblem';
 import DiscoveryIcon from '@material-ui/icons/AddLocation';
 import LogoutIcon from '@material-ui/icons/Reply';
@@ -23,9 +25,20 @@ import { routerRedux } from "dva/router";
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.state = {
-      sideMenuOpen: this.props.sideMenuOpen
+      sideMenuOpen: this.props.sideMenuOpen,
+      isLoggedIn: false
     };
+  }
+
+  handleLoginClick() {
+    this.setState({isLoggedIn: true});
+  }
+
+  handleLogoutClick() {
+    this.setState({isLoggedIn: false});
   }
 
   render() {
@@ -71,6 +84,55 @@ class SideBar extends React.Component {
         </div>
       </div>
     );
+    const sidebarWithoutLogin = (
+      <div className={styles.sidebar__background}><div><span className={styles.menuButton}>Menu</span><MenuIcon className={styles.menuIcon}/></div>
+        <div className={styles.sidebar__menu}>
+          <div
+            className={styles.profile__text}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.dispatch(routerRedux.push({ pathname: "/login" }));
+            }}
+          ><LoginIcon />
+            Login
+          </div>
+          <div
+            className={styles.report__text}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.dispatch(routerRedux.push({ pathname: "/register" }));
+            }}
+          ><RegisterIcon />
+            Register
+          </div>
+          <div
+            className={styles.discovery__text}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.dispatch(routerRedux.push({ pathname: "/login" }));
+            }}
+          ><ReportIcon />
+            Report
+          </div>
+          <div
+            className={styles.logout__text}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.dispatch(routerRedux.push({ pathname: "/login" }));
+            }}
+          ><DiscoveryIcon />
+            New Discovery
+          </div>
+        </div>
+      </div>
+    );
+    const isLoggedIn = this.state.isLoggedIn;
+    let displayMenu;
+    if (isLoggedIn) {
+      displayMenu = sidebar;
+    } else {
+      displayMenu = sidebarWithoutLogin;
+    }
     return (
       <div>
         <div
@@ -85,7 +147,7 @@ class SideBar extends React.Component {
             fontSize: 10
           }}
           contentStyle={{ color: "#A6A6A6", textAlign: "center" }}
-          sidebar={sidebar}
+          sidebar={displayMenu}
           open={this.state.sideMenuOpen}
           onOpenChange={() => this.onOpenChange()}
           children={<div />}
