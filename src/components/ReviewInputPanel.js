@@ -43,7 +43,7 @@ class ReviewInputPanel extends React.Component {
     this.state = {
       activeRating: 5,
       activeReview: "",
-      activeReviewList: []
+      //activeReviewList: []
     };
   }
 
@@ -58,7 +58,9 @@ class ReviewInputPanel extends React.Component {
     })
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    // load list of reviews
+  }
   componentWillUnmount() {}
 
   render() {
@@ -67,6 +69,7 @@ class ReviewInputPanel extends React.Component {
         <RatingContainer>
           <span>
           <Rate 
+          //className={"rating"}
           allowHalf
           value={this.state.activeRating}
           onChange={this.handleChange}
@@ -81,6 +84,7 @@ class ReviewInputPanel extends React.Component {
           
           <TextArea 
           type="text"
+          //className={"review"}
           placeholder="Write your review. Press enter to commit your review." 
           value={this.state.activeReview}
           onChange={this.handleActiveReviewChange}
