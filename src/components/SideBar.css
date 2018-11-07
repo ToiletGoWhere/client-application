@@ -1,50 +1,4 @@
-/* .singleFooMenu {
-    position: absolute;
-    z-index: 90 !important;
-    width: 30%;
-    background-color: rgb(30, 75, 105);
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 15px;
-    color: white;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-  }
-  
-  .singleMenuActive .singleTopNavBar{
-    z-index: 90;
-  }
-  
-  .singleTopNavBar {
-    width: 100%;
-    position: relative;
-    background-color: rgb(30, 75, 105);
-    color: #FFF;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-  }
-  .amNavbarTitle {
-    color: #FFF!important;
-  }
-  .menuMask {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.4;
-    z-index: 89;
-  }
-
-  .menuIcon {
-    width:5px;
-    height:5px;
-  } */
-
-  .button{
+.button{
     /* position: relative; */
     position:absolute;
     margin-left: 10px;
@@ -91,16 +45,6 @@ from {top:50px;}
 to {top:0px;}
 }
 
-
-.sidebar__background {
-  background-size: contain;
-  width: 155px;
-  height: 800px;
-  position: relative;
-  z-index: 50000;
-  background-color: rgb(30, 75, 105);
-}
-
 .sidebar__mask {
   background-size: 300px 800px;
 }
@@ -118,7 +62,7 @@ to {top:0px;}
     position: absolute;
     padding-left: 10px;
     margin-left: 0px;
-    margin-top: 30px;
+    margin-top: 50px;
     padding-top: 10px;
     font-size: 15px;
     font-weight: 400;
@@ -132,7 +76,7 @@ to {top:0px;}
     position: absolute;
     padding-left: 10px;
     margin-left: 0px;
-    margin-top: 60px;
+    margin-top: 100px;
     padding-top: 10px;
     font-size: 15px;
     font-weight: 400;
@@ -146,7 +90,7 @@ to {top:0px;}
     position: absolute;
     padding-left: 10px;
     margin-left: 0px;
-    margin-top: 90px;
+    margin-top: 150px;
     padding-top: 10px;
     font-size: 15px;
     font-weight: 400;
@@ -160,7 +104,7 @@ to {top:0px;}
     position: absolute;
     padding-left: 10px;
     margin-left: 0px;
-    margin-top: 120px;
+    margin-top: 200px;
     padding-top: 10px;
     font-size: 15px;
     font-weight: 400;
@@ -183,16 +127,4 @@ to {top:0px;}
 .my-drawer .am-drawer-sidebar .am-list {
     width: 100px;
     padding: 0;
-}
-
-.menuButton {
-  font-size:20px;
-  color:white;
-  font-family: 'Times New Roman', Times, serif
-}
-
-.menuIcon {
-  padding-left:80px;
-  color:white;
-  padding-top: 0px;
 }
