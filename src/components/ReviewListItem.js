@@ -21,11 +21,12 @@ class ReviewListItem extends React.Component {
 
   componentWillUnmount() {}
 
-  async generateReviewList() {
+  async generateReviewList(reviewItem) {
     var rating = this.state.activeRating
     var review = this.state.activeReview
+    var reviewItem = [rating, review]
 
-    this.setState({ activeReviewList: [...this.state.activeReviewList, rating, review] })
+    this.setState({ activeReviewList: [...this.state.activeReviewList, reviewItem] })
 
     this.props.dispatch({
       type: "toiletData/save",
@@ -38,8 +39,25 @@ class ReviewListItem extends React.Component {
 
   //fixing display
   render() {
+    var { activeReviewList } = this.state.activeReviewList;
     return (
-      <List itemLayout="horizontal"
+      <List
+      //className="demo-loadmore-list"
+      itemLayout="horizontal"
+      dataSource={activeReviewList}
+      renderItem={item => (
+        <List.Item>
+          <List.Item.Meta
+            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+            title="insert username"
+            description={item.review}
+          />
+          <div>Rating</div>
+          <Rate disabled allowHalf defaultValue={2.5} value={item.rating}/>
+        </List.Item>
+      )}
+    />
+      /*<List itemLayout="horizontal"
             dataSource={this.state.activeReviewList}
             renderItem={item => (
         <List.Item>
@@ -51,7 +69,7 @@ class ReviewListItem extends React.Component {
           <Rate disabled allowHalf defaultValue={2.5} value={item.rating}/>
         </List.Item>
       )}
-    />
+    />*/
     );
   }
 }
