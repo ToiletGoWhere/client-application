@@ -10,7 +10,8 @@ export default {
     toiletList: [],
     reviewList: [],
     currentRating: "",
-    currentReview: ""
+    currentReview: "",
+    currentReviewList: []
   },
 
   subscriptions: {
