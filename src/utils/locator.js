@@ -3,8 +3,8 @@ export default async function loadPosition() {
     const position = await getCurrentPosition();
     const { latitude, longitude } = position.coords;
     let currentLocation = {
-      lng: longitude,
-      lat: latitude
+      lat: latitude,
+      lng: longitude
     };
     return currentLocation;
   } catch (error) {
