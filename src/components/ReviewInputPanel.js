@@ -67,11 +67,11 @@ class ReviewInputPanel extends React.Component {
     };
 
     async generateReviewList() {
-        //let rating = this.props.toiletData.currentRating;
-        //let review = this.props.toiletData.currentReview;
+        let rating = this.props.toiletData.currentRating;
+        let review = this.props.toiletData.currentReview;
         let singularReview = {
-            rating: this.props.toiletData.currentRating,
-            review: this.props.toiletData.currentReview,
+            rating: rating,
+            review: review,
         };
 
         this.setState({
