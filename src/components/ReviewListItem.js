@@ -18,14 +18,14 @@ class ReviewListItem extends React.Component {
         };
     }
     componentDidMount() {
-        this.generateReviewList.bind(this)(this.state.activeReviewList);
+        //TODO:
     }
 
     componentWillUnmount() {}
 
-    async generateReviewList() {
-        let rating = this.props.toiletData.currentRating;
-        let review = this.props.toiletData.currentReview;
+    /*async generateReviewList() {
+        //let rating = this.props.toiletData.currentRating;
+        //let review = this.props.toiletData.currentReview;
         this.setState({
             activeReviewList: [...this.state.activeReviewList, rating, review],
         });
@@ -36,9 +36,9 @@ class ReviewListItem extends React.Component {
                 reviewList: this.state.activeReviewList,
             },
         });
-    }
+    }*/
 
-    //fixing display
+    //Display ok
     render() {
         //let { activeReviewList } = this.state.activeReviewList;
         return (
@@ -60,22 +60,6 @@ class ReviewListItem extends React.Component {
                     })}
                 </List>
             </div>
-            /*<List
-      //className="demo-loadmore-list"
-      itemLayout="horizontal"
-      dataSource={activeReviewList}
-      renderItem={item => (
-        <List.Item>
-          <List.Item.Meta
-            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-            title="insert username"
-            description={item.rating}
-          />
-          <div>Rating</div>
-          <Rate disabled allowHalf defaultValue={2.5} value={item.review}/>
-        </List.Item>
-      )}
-    />*/
         );
     }
 }
