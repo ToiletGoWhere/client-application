@@ -18,3 +18,13 @@ export async function confirmToiletServer(payload) {
     const response = httpClientInstance.put("/api/auth/toilets/"+payload.tolietId);
     return response;
 }
+
+export async function findToilet(payload) {
+    const response = httpClientInstance.get(
+        `api/toilets/${payload.lat}/${payload.lng}/${payload.floor}/${
+            payload.gender
+        }`,
+    );
+    return response;
+}
+
