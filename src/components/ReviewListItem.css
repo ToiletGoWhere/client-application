@@ -25,36 +25,6 @@
     box-sizing: border-box;
     align-items: center;
 }
-
-.DisplayCar {
-    padding: 11px;
-    display: flex;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    align-items: center;
-}
-
-.Root {
-    width: "100%";
-    background-color: antiquewhite;
-    position: relative;
-    overflow: auto;
-    height: 90px;
-    margin-left: 11px;
-    margin-right: 11px;
-}
-
-.Ul {
-    background-color: inherit;
-    padding: 0;
-    height: 30px;
-}
-
-.Divi {
-    background-color: white;
-    margin-top: 10px;
-}
-
 .Button {
     height: 40px;
     width: 50px;
@@ -74,9 +44,4 @@
     color: #fff;
     box-sizing: border-box;
     padding-top: 7px;
-}
-.gender__container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }

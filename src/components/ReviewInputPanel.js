@@ -49,9 +49,8 @@ class ReviewInputPanel extends React.Component {
         this.state = {
             activeRating: 5,
             activeReview: "",
-
-            //delete later
-            //activeReviewList: [],
+            //singularItem: {},
+            activeReviewList: this.props.toiletData.reviewList,
         };
     }
 
@@ -67,11 +66,25 @@ class ReviewInputPanel extends React.Component {
         });
     };
 
+    async generateReviewList() {
+        //let rating = this.props.toiletData.currentRating;
+        //let review = this.props.toiletData.currentReview;
+        let singularReview = {
+            rating: this.props.toiletData.currentRating,
+            review: this.props.toiletData.currentReview,
+        };
+
+        this.setState({
+            activeReviewList: [...this.state.activeReviewList, singularReview],
+        });
+    }
+
     componentDidMount() {
         // load list of reviews
     }
     componentWillUnmount() {}
 
+    //OK:
     render() {
         return (
             <RatingContainer>
@@ -97,7 +110,7 @@ class ReviewInputPanel extends React.Component {
                 <TextArea
                     type="text"
                     //className={"review"}
-                    placeholder="Press enter to submit..."
+                    placeholder="Review goes here..."
                     value={this.state.activeReview}
                     onChange={this.handleActiveReviewChange}
                     onPressEnter={() =>
@@ -137,8 +150,17 @@ class ReviewInputPanel extends React.Component {
         });*/
         console.log(`Rating: ${this.props.toiletData.currentRating}`);
         console.log(`Review: ${this.props.toiletData.currentReview}`);
+
+        this.generateReviewList.bind(this)(this.state.activeReviewList);
+
+        this.props.dispatch({
+            type: "toiletData/save",
+            payload: {
+                reviewList: this.state.activeReviewList,
+            },
+        });
         //delete later
-        //console.log(`Review List: ${this.props.toiletData.reviewList}`);
+        console.log(`Review List: ${this.props.toiletData.reviewList}`);
     }
 }
 
