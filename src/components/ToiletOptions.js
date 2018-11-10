@@ -3,6 +3,7 @@ import { connect } from "dva";
 import styled from "styled-components";
 import GenderSelection from "./GenderSelection";
 import FloorSelection from "./FloorSelection";
+import { findfindToilet } from "../services/webServices";
 const ToiletOptionsContainer = styled.div`
     background-color: #f2f2f2;
     width: 100%;
@@ -62,6 +63,23 @@ class ToiletOptions extends React.Component {
     submitToiletOptions() {
         console.log(`Gender Selected: ${this.props.toiletData.gender}`);
         console.log(`Floor Selected: ${this.props.toiletData.floor}`);
+        this.handleToiletSearch();
+    }
+    async handleToiletSearch() {
+        const response = findfindToilet({
+            lat: this.props.toiletData.currentLocation.lat,
+            lng: this.props.toiletData.currentLocation.lng,
+            floor: this.props.toiletData.floor,
+            gender: this.props.toiletData.gender,
+        });
+        console.log(response);
+        const returnedToiletList = response.data;
+        this.props.dispatch({
+            type: "toiletData/save",
+            payload: {
+                toiletList: returnedToiletList,
+            },
+        });
     }
     render() {
         return (
