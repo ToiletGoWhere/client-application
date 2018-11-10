@@ -14,6 +14,7 @@ import FemaleIcon from "../assets/icons/FemaleIcon";
 import MaleIcon from "../assets/icons/MaleIcon";
 import NursingIcon from "../assets/icons/NursingIcon";
 import axios from "axios";
+import { loadReview } from "../services/webServices";
 
 const RatingContainer = styled.div`
     width: 100%;
@@ -41,15 +42,25 @@ const cardStyles = theme => ({
 class ToiletInfo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            reviewList: [],
+        };
     }
 
-    componentDidMount() {}
-
-    loadData(id) {
-        axios.get(`172.31.38.253:3000/api/feedbacks/${id}`).then(res => {
-            return res.data;
+    async load() {
+        console.log(this.props.toiletData.currentToiletSelected._id);
+        console.log(this.props.toiletData.currentToiletSelected.toiletType);
+        const response = await loadReview(
+            this.props.toiletData.currentToiletSelected._id,
+        );
+        console.log(response);
+        this.setState({
+            reviewList: response.data,
         });
+    }
+
+    componentDidMount() {
+        this.load();
     }
 
     componentWillUnmount() {}
@@ -59,14 +70,15 @@ class ToiletInfo extends React.Component {
             <div className={styles.General}>
                 <div className={styles.gender__container}>
                     <div className={styles.Display}>Gender:</div>
-                    {this.props.toiletData.gender === "accessible" && (
+                    {this.props.toiletData.currentToiletSelected.toiletType ===
+                        "accessible" && (
                         <SelectionButton
                             active
                             onChange={() =>
                                 this.props.dispatch({
                                     type: "toiletData/save",
                                     payload: {
-                                        gender: "accessible",
+                                        toiletType: "accessible",
                                     },
                                 })
                             }
@@ -75,14 +87,15 @@ class ToiletInfo extends React.Component {
                         </SelectionButton>
                     )}
 
-                    {this.props.toiletData.gender === "male" && (
+                    {this.props.toiletData.currentToiletSelected.toiletType ===
+                        "male" && (
                         <SelectionButton
                             active
                             onChange={() =>
                                 this.props.dispatch({
                                     type: "toiletData/save",
                                     payload: {
-                                        gender: "male",
+                                        toiletType: "male",
                                     },
                                 })
                             }
@@ -91,14 +104,15 @@ class ToiletInfo extends React.Component {
                         </SelectionButton>
                     )}
 
-                    {this.props.toiletData.gender === "female" && (
+                    {this.props.toiletData.currentToiletSelected.toiletType ===
+                        "female" && (
                         <SelectionButton
                             active
                             onChange={() =>
                                 this.props.dispatch({
                                     type: "toiletData/save",
                                     payload: {
-                                        gender: "female",
+                                        toiletType: "female",
                                     },
                                 })
                             }
@@ -107,14 +121,15 @@ class ToiletInfo extends React.Component {
                         </SelectionButton>
                     )}
 
-                    {this.props.toiletData.gender === "nursing" && (
+                    {this.props.toiletData.currentToiletSelected.toiletType ===
+                        "nursing" && (
                         <SelectionButton
                             active
                             onChange={() =>
                                 this.props.dispatch({
                                     type: "toiletData/save",
                                     payload: {
-                                        gender: "nursing",
+                                        toiletType: "nursing",
                                     },
                                 })
                             }
@@ -130,28 +145,35 @@ class ToiletInfo extends React.Component {
                         className={styles.DisplayRat}
                         disabled
                         allowHalf
-                        value={this.props.currentToiletSelected.rating}
+                        value={
+                            this.props.toiletData.currentToiletSelected.rating
+                        }
                     />
+                </div>
+
+                <div className={styles.Display}>
+                    Persons give review :
+                    {this.props.toiletData.currentToiletSelected.numFeedback}
                 </div>
 
                 <div className={styles.Display}>Review:</div>
                 <div className={styles.Root}>
-                    {this.loadData(this.props.currentToiletSelected._id).map(
-                        (item, i) => {
-                            return (
-                                <List>
-                                    <li>
-                                        <ul className={styles.Ul}>
-                                            <ListItem key={i}>
-                                                <ListItemText primary={item} />
-                                            </ListItem>
-                                        </ul>
-                                    </li>
-                                    <Divider className={styles.Divi} />
-                                </List>
-                            );
-                        },
-                    )}
+                    {this.state.reviewList.map((item, i) => {
+                        return (
+                            <List>
+                                <li>
+                                    <ul className={styles.Ul}>
+                                        <ListItem key={i}>
+                                            <ListItemText
+                                                primary={item.content}
+                                            />
+                                        </ListItem>
+                                    </ul>
+                                </li>
+                                <Divider className={styles.Divi} />
+                            </List>
+                        );
+                    })}
                 </div>
             </div>
         );
