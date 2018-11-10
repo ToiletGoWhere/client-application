@@ -67,10 +67,14 @@ class ReviewInputPanel extends React.Component {
     };
 
     componentDidMount() {
-        //this.generateReviewList(); //.bind(this)(this.state.activeReviewList);
+        /*this.fetchData();*/
     }
 
     componentWillUnmount() {}
+
+    /*fetchData() {
+        this.props.toiletData.reviewList;
+    }*/
 
     //OK:
     render() {
