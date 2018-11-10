@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "dva";
 import "antd/dist/antd.css";
 import { Rate } from "antd";
-import { Form } from "antd";
+import { Divider } from "antd";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import styles from "./ReviewListItem.css";
+import ReviewInputPanel from "./ReviewInputPanel";
 
 class ReviewListItem extends React.Component {
     constructor(props) {
@@ -59,6 +60,8 @@ class ReviewListItem extends React.Component {
                         );
                     })}
                 </List>
+                <Divider>Add Your Review</Divider>
+                <ReviewInputPanel />
             </div>
         );
     }
