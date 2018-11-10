@@ -116,16 +116,14 @@ class ReviewInputPanel extends React.Component {
 
     //debugging posting part
     submitReview() {
-        console.log(`Rating: ${this.props.toiletData.currentRating}`);
-        console.log(`Review: ${this.props.toiletData.currentReview}`);
-
         this.generateReviewList(); //.bind(this)(this.state.activeReviewList);
+        this.logInfo();
     }
 
     generateReviewList() {
         let reviewItem = {
             rating: this.state.activeRating,
-            review: this.state.active,
+            review: this.state.activeReview,
         };
 
         this.setState({
@@ -138,6 +136,11 @@ class ReviewInputPanel extends React.Component {
                 reviewList: this.state.activeReviewList,
             },
         });
+    }
+
+    logInfo() {
+        console.log(`Rating: ${this.props.toiletData.currentRating}`);
+        console.log(`Review: ${this.props.toiletData.currentReview}`);
         console.log(`Review List: ${this.props.toiletData.reviewList}`);
     }
 }
