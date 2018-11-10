@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "dva";
 import styled from "styled-components";
-import GenderSelection from "./GenderSelection";
-import FloorSelection from "./FloorSelection";
+import ConfirmationSelection from "./ConfirmationSelection";
+
 const ToiletOptionsContainer = styled.div`
   background-color: #f2f2f2;
   width: 100%;
-  height: 300px;
+  height: 120px;
   left: 0;
   bottom: 0;
   position: fixed;
@@ -40,26 +40,21 @@ const ConfirmationButton = styled.div`
   box-sizing: border-box;
   position: absolute;
 `;
-
-class ContributeNewToilet extends React.Component {
+class ConfirmToilet extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
   componentDidMount() { }
   componentWillUnmount() { }
-  submitToiletOptions() {
-    console.log(`Gender Selected: ${this.props.toiletData.gender}`);
-    console.log(`Floor Selected: ${this.props.toiletData.floor}`);
-
-  }
   render() {
+    
     return (
       <ToiletOptionsContainer>
-        <GenderSelection />
-        <FloorSelection />
-        <ConfirmationContainer>
-          <ConfirmationButton 
+        <ConfirmationSelection />
+        {/* <ConfirmationContainer>
+          <ConfirmationButton
             onClick={() =>
               this.props.dispatch({
                 type: "toiletData/save",
@@ -69,18 +64,18 @@ class ContributeNewToilet extends React.Component {
                 }
               })
             }>
-            CONFIRM
+            Submit
           </ConfirmationButton>
-        </ConfirmationContainer>
+        </ConfirmationContainer> */}
       </ToiletOptionsContainer>
     );
   }
 }
 
-ContributeNewToilet.propTypes = {};
+ConfirmToilet.propTypes = {};
 
 function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps)(ContributeNewToilet);
+export default connect(mapStateToProps)(ConfirmToilet);
