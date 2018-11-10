@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "dva";
-import { Accessible, Accessibility, PregnantWoman } from "@material-ui/icons";
+import { Accessible } from "@material-ui/icons";
 import styled from "styled-components";
 import SelectionButton from "./SelectionButton";
 import FemaleIcon from "../assets/icons/FemaleIcon";
@@ -28,25 +28,7 @@ class GenderSelection extends React.Component {
         return (
             <GenderSelectionContainer>
                 <div>Select Gender</div>
-                <SelectionButton
-                    active={this.props.toiletData.gender === "accessible"}
-                    onClick={() =>
-                        this.props.dispatch({
-                            type: "toiletData/save",
-                            payload: {
-                                gender: "accessible",
-                            },
-                        })
-                    }
-                >
-                    <Accessible
-                        style={
-                            this.props.toiletData.gender === "accessible"
-                                ? { color: "#FFF" }
-                                : { color: "#4169e1" }
-                        }
-                    />
-                </SelectionButton>
+
                 <SelectionButton
                     active={this.props.toiletData.gender === "male"}
                     onClick={() =>
@@ -75,6 +57,25 @@ class GenderSelection extends React.Component {
                 >
                     <FemaleIcon
                         active={this.props.toiletData.gender === "female"}
+                    />
+                </SelectionButton>
+                <SelectionButton
+                    active={this.props.toiletData.gender === "accessible"}
+                    onClick={() =>
+                        this.props.dispatch({
+                            type: "toiletData/save",
+                            payload: {
+                                gender: "accessible",
+                            },
+                        })
+                    }
+                >
+                    <Accessible
+                        style={
+                            this.props.toiletData.gender === "accessible"
+                                ? { color: "#FFF" }
+                                : { color: "#4169e1" }
+                        }
                     />
                 </SelectionButton>
                 <SelectionButton
