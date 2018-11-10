@@ -49,8 +49,7 @@ class ReviewInputPanel extends React.Component {
         this.state = {
             activeRating: 5,
             activeReview: "",
-            //singularItem: {},
-            activeReviewList: this.props.toiletData.reviewList,
+            activeReviewList: [],
         };
     }
 
@@ -66,22 +65,7 @@ class ReviewInputPanel extends React.Component {
         });
     };
 
-    async generateReviewList() {
-        let rating = this.props.toiletData.currentRating;
-        let review = this.props.toiletData.currentReview;
-        let singularReview = {
-            rating: rating,
-            review: review,
-        };
-
-        this.setState({
-            activeReviewList: [...this.state.activeReviewList, singularReview],
-        });
-    }
-
-    componentDidMount() {
-        // load list of reviews
-    }
+    componentDidMount() {}
     componentWillUnmount() {}
 
     //OK:
@@ -132,26 +116,21 @@ class ReviewInputPanel extends React.Component {
 
     //debugging posting part
     submitReview() {
-        //delete later
-        /*this.setState({
-            activeReviewList: [
-                ...this.state.activeReviewList,
-                this.state.activeRating,
-                this.state.activeReview,
-            ],
-        });
-        this.props.dispatch({
-            type: "toiletData/save",
-            payload: {
-                currentRating: this.state.activeRating,
-                currentReview: this.state.activeReview,
-                reviewList: this.state.activeReviewList,
-            },
-        });*/
         console.log(`Rating: ${this.props.toiletData.currentRating}`);
         console.log(`Review: ${this.props.toiletData.currentReview}`);
 
-        this.generateReviewList.bind(this)(this.state.activeReviewList);
+        this.generateReviewList(); //.bind(this)(this.state.activeReviewList);
+    }
+
+    generateReviewList() {
+        let reviewItem = {
+            rating: this.state.activeRating,
+            review: this.state.active,
+        };
+
+        this.setState({
+            activeReviewList: [...this.state.activeReviewList, reviewItem],
+        });
 
         this.props.dispatch({
             type: "toiletData/save",
@@ -159,7 +138,6 @@ class ReviewInputPanel extends React.Component {
                 reviewList: this.state.activeReviewList,
             },
         });
-        //delete later
         console.log(`Review List: ${this.props.toiletData.reviewList}`);
     }
 }
