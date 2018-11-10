@@ -3,6 +3,8 @@ import { connect } from "dva";
 import styled from "styled-components";
 import GenderSelection from "./GenderSelection";
 import FloorSelection from "./FloorSelection";
+import { contributeNewToiletServer } from "../services/webServices";
+
 const ToiletOptionsContainer = styled.div`
   background-color: #f2f2f2;
   width: 100%;
@@ -48,27 +50,30 @@ class ContributeNewToilet extends React.Component {
   }
   componentDidMount() { }
   componentWillUnmount() { }
-  submitToiletOptions() {
-    console.log(`Gender Selected: ${this.props.toiletData.gender}`);
-    console.log(`Floor Selected: ${this.props.toiletData.floor}`);
 
+  handleSubmit () {
+    console.log("handleSubmit function called");
+    const contributeNewToilet = async () => {
+      const payload = {
+        lat: 1.314896,
+        lng: 103.766663,
+        lvl: this.props.toiletData.floor,
+        type: this.props.toiletData.gender,
+      }
+      const response = await contributeNewToiletServer(payload);
+      console.log(response);
+    };
+    contributeNewToilet();
   }
+
   render() {
     return (
       <ToiletOptionsContainer>
         <GenderSelection />
         <FloorSelection />
         <ConfirmationContainer>
-          <ConfirmationButton 
-            onClick={() =>
-              this.props.dispatch({
-                type: "toiletData/save",
-                payload: {
-                  floor: "",
-                  gender: ""
-                }
-              })
-            }>
+          <ConfirmationButton
+            onClick={() => this.handleSubmit()}>
             CONFIRM
           </ConfirmationButton>
         </ConfirmationContainer>
