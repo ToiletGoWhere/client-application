@@ -50,7 +50,7 @@ class ReviewInputPanel extends React.Component {
         this.state = {
             activeRating: 5,
             activeReview: "",
-            activeReviewList: [],
+            activeReviewList: this.props.toiletData.reviewList,
         };
     }
 
@@ -67,7 +67,7 @@ class ReviewInputPanel extends React.Component {
     };
 
     componentDidMount() {
-        /*this.fetchData();*/
+        this.props.toiletData.reviewList;
     }
 
     componentWillUnmount() {}
@@ -119,12 +119,11 @@ class ReviewInputPanel extends React.Component {
     }
 
     //debugging posting part
-    submitReview() {
+    async submitReview() {
         this.generateReviewList();
-        this.logInfo();
     }
 
-    generateReviewList() {
+    async generateReviewList() {
         let reviewItem = {
             rating: this.state.activeRating,
             review: this.state.activeReview,
@@ -142,13 +141,15 @@ class ReviewInputPanel extends React.Component {
                 reviewList: this.state.activeReviewList,
             },
         });
+
+        console.log(`Review List: ${this.props.toiletData.reviewList}`);
     }
 
-    logInfo() {
+    /*logInfo() {
         //console.log(`Rating: ${this.props.toiletData.currentRating}`);
         //console.log(`Review: ${this.props.toiletData.currentReview}`);
         console.log(`Review List: ${this.props.toiletData.reviewList}`);
-    }
+    }*/
 }
 
 ReviewInputPanel.propTypes = {};
