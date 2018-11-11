@@ -40,6 +40,7 @@ class ReviewListItem extends React.Component {
     }*/
 
     //Display ok
+
     render() {
         //let { activeReviewList } = this.state.activeReviewList;
         return (
