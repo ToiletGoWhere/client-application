@@ -5,6 +5,10 @@ export async function pingServer() {
     return response;
 }
 
+export async function loadReview(id) {
+    const response = httpClientInstance.get("/api/feedbacks/" + id);
+    return response;
+}
 export async function contributeNewToiletServer(payload) {
     console.log("webServices called:");
     console.log(payload);
@@ -22,14 +26,22 @@ export async function reportIssueServer(payload) {
 export async function confirmToiletServer(payload) {
     console.log("webServices called:");
     console.log(payload);
-    const response = httpClientInstance.put("/api/auth/toilets/" + payload.tolietId);
+    const response = httpClientInstance.put(
+        "/api/auth/toilets/" + payload.tolietId,
+    );
     return response;
 }
 
 export async function findToilet(payload) {
     const response = httpClientInstance.get(
-        `api/toilets/${payload.lat}/${payload.lng}/${payload.floor}/${payload.gender}`,
+        `api/toilets/${payload.lat}/${payload.lng}/${payload.floor}/${
+            payload.gender
+        }`,
     );
     return response;
 }
 
+export async function loadLogin(payload) {
+    const response = httpClientInstance.put("/api/login", payload);
+    return response;
+}
