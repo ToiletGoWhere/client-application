@@ -12,6 +12,13 @@ export async function contributeNewToiletServer(payload) {
     return response;
 }
 
+export async function reportIssueServer(payload) {
+    console.log("webServices called:");
+    console.log(payload);
+    const response = httpClientInstance.post("/api/auth/reports/", payload);
+    return response;
+}
+
 export async function confirmToiletServer(payload) {
     console.log("webServices called:");
     console.log(payload);
