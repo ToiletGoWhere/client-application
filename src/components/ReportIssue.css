@@ -1,0 +1,23 @@
+.base {
+  color: red;
+}
+
+.textField {
+  margin-top:10px;
+  margin-left: 10px;
+  height: 800px;
+  width: 350px;
+}
+
+.labelStyle {
+  margin-left: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+.categoryField{
+  margin-left: 10px;
+  width:300px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+}
