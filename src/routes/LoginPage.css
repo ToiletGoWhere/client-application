@@ -1,0 +1,18 @@
+.Root {
+    width: "100%";
+    position: relative;
+    overflow: auto;
+
+    display: "flex";
+}
+
+.Topic {
+    text-align: center;
+}
+
+.textField {
+    margin-left: 30px;
+    margin-right: 30px;
+    position: absolute;
+    height: 90px;
+}

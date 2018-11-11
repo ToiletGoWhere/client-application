@@ -33,3 +33,8 @@ export async function findToilet(payload) {
     );
     return response;
 }
+
+export async function loadLogin(payload) {
+    const response = httpClientInstance.put("/api/login", payload);
+    return response;
+}
