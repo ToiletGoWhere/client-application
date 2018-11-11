@@ -129,18 +129,30 @@ class ReviewInputPanel extends React.Component {
             review: this.state.activeReview,
         };
 
-        this.setState({
-            activeReviewList: [...this.state.activeReviewList, reviewItem],
-        });
+        this.setState(
+            {
+                activeReviewList: [...this.state.activeReviewList, reviewItem],
+            },
+            () => {
+                this.props.dispatch({
+                    type: "toiletData/save",
+                    payload: {
+                        currentRating: this.state.activeRating,
+                        currentReview: this.state.activeReview,
+                        reviewList: this.state.activeReviewList,
+                    },
+                });
+            },
+        );
 
-        this.props.dispatch({
+        /*this.props.dispatch({
             type: "toiletData/save",
             payload: {
                 currentRating: this.state.activeRating,
                 currentReview: this.state.activeReview,
                 reviewList: this.state.activeReviewList,
             },
-        });
+        });*/
 
         console.log(`Review List: ${this.props.toiletData.reviewList}`);
     }
