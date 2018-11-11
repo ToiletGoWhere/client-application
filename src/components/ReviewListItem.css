@@ -7,6 +7,16 @@
     align-items: center;
 }
 
+.ReviewItemContainer {
+    height: 300px;
+    padding: 11px;
+    color: #4169e1;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+}
+
 .Display {
     height: 50px;
     padding: 11px;

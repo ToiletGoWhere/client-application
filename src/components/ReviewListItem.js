@@ -44,22 +44,24 @@ class ReviewListItem extends React.Component {
         //let { activeReviewList } = this.state.activeReviewList;
         return (
             <div className={styles.General}>
-                <div className={styles.Display}>Feedback List</div>
-                <List>
-                    {this.props.toiletData.reviewList.map((item, i) => {
-                        return (
-                            <ListItem key={i}>
-                                <ListItemText primary={item.review} />
-                                <Rate
-                                    className={styles.DisplayRat}
-                                    allowHalf
-                                    disabled
-                                    value={item.rating}
-                                />
-                            </ListItem>
-                        );
-                    })}
-                </List>
+                <div className={styles.ReviewItemContainer}>
+                    <div className={styles.Display}>Feedback List</div>
+                    <List>
+                        {this.props.toiletData.reviewList.map((item, i) => {
+                            return (
+                                <ListItem key={i}>
+                                    <ListItemText primary={item.review} />
+                                    <Rate
+                                        className={styles.DisplayRat}
+                                        allowHalf
+                                        disabled
+                                        value={item.rating}
+                                    />
+                                </ListItem>
+                            );
+                        })}
+                    </List>
+                </div>
                 <Divider>Add Your Review</Divider>
                 <ReviewInputPanel />
             </div>
