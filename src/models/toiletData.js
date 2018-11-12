@@ -3,7 +3,7 @@ export default {
 
     state: {
         login: false,
-        currentUser: { email: "darthvader@protonmail.com", password: "888888" },
+        currentUser: {},
         gender: "",
         floor: "0",
         currentLocation: { lat: "", lng: "" },
@@ -33,15 +33,7 @@ export default {
                 distance: 51.33959128443111,
             },
         ],
-        reviewList: [
-            {
-                email: "troll@protonmail.com",
-                rating: 4.5,
-                review: "very clean but can be better",
-            },
-            { email: "troll@protonmail.com", rating: 0.5, review: "REAL BAD" },
-            { email: "troll@protonmail.com", rating: 2, review: "dirty" },
-        ],
+        reviewList: [],
         currentRating: "",
         currentReview: "",
         //currentReviewList: [],
