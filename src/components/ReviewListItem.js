@@ -41,7 +41,7 @@ class ReviewListItem extends React.Component {
     }*/
 
     //Display ok
-
+    //update to fetch username
     render() {
         //let { activeReviewList } = this.state.activeReviewList;
         return (
@@ -57,7 +57,7 @@ class ReviewListItem extends React.Component {
                                         avatar={
                                             <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                                         }
-                                        title={"username"}
+                                        title={item.email}
                                         description={item.review}
                                     />
 

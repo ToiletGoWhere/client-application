@@ -33,11 +33,7 @@ export default {
                 distance: 51.33959128443111,
             },
         ],
-        reviewList: [
-            { rating: 4.5, review: "very clean but can be better" },
-            { rating: 0.5, review: "REAL BAD" },
-            { rating: 2, review: "dirty" },
-        ],
+        reviewList: [],
         currentRating: "",
         currentReview: "",
         //currentReviewList: [],
