@@ -18,20 +18,20 @@ const ToiletOptionsContainer = styled.div`
 
 const categories = [
   {
-    value: '1',
+    value: 'female',
     label: 'Female',
   },
   {
-    value: '2',
+    value: 'male',
     label: 'Male',
   },
   {
-    value: '3',
+    value: 'nursing',
     label: 'Nursing',
   },
   {
-    value: '4',
-    label: 'Accessiable',
+    value: 'accesible',
+    label: 'Accessible',
   },
 ];
 const styles = theme => ({
@@ -73,16 +73,14 @@ class UpdateProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: 'hai',
+      labelWidth: 0,
+      category: '1',
+      username: '',
     };
   }
   componentDidMount() { }
   componentWillUnmount() { }
-  state = {
-    name: 'hai',
-    labelWidth: 0,
-    category: '1',
-    username: '',
-  };
 
   handleChangeText = name => event => {
     this.setState({
@@ -113,7 +111,6 @@ class UpdateProfile extends React.Component {
               id="outlined-helperText"
               label="Username"
               value={this.state.username}
-              defaultValue="Preload Username"
               className={classes.textField}
               onChange={this.handleChangeText('username')}
               margin="normal"

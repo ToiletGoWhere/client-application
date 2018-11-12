@@ -40,7 +40,7 @@ export async function reportIssueServer(payload) {
 export async function updateProfileServer(payload) {
     console.log("webServices called:");
     console.log(payload);
-    const response = httpClientInstance.post("/api/auth/users", payload);
+    const response = httpClientInstance.put("/api/auth/users", payload);
     console.log("webservices response:");
     console.log(response);
     return response;

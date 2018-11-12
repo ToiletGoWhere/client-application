@@ -13,15 +13,8 @@ const ToiletOptionsContainer = styled.div`
 `;
 
 const styles = theme => ({
-  categoryLabel: {
+  labelStyle: {
     marginTop: '10px',
-    marginLeft: '10px',
-    paddingBottom: 0,
-    fontWeight: 500,
-    fontSize: '20px'
-  },
-  issueLabel: {
-    marginTop: '20px',
     marginLeft: '10px',
     paddingBottom: 0,
     fontWeight: 500,
@@ -89,11 +82,11 @@ class UpdateProfile extends React.Component {
     return (
       <ToiletOptionsContainer>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <div className={classes.issueLabel}>Username:</div>
+          <div className={classes.labelStyle}>Username:</div>
           <br />
           <p className={classes.preloadValue}>preload username</p>
           <p></p>
-          <div className={classes.categoryLabel}>Preferred Toilet Type:</div>
+          <div className={classes.labelStyle}>Preferred Toilet Type:</div>
           <br />
           <p className={classes.preloadValue}>preload preferred toilet type</p>
           <ConfirmationButton
