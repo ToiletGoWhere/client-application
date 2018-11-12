@@ -4,7 +4,7 @@ export default {
     state: {
         toiletContributeShow: false,
         toiletInforShow: false,
-        toiletOptionsShow: true,
+        toiletOptionsShow: false,
         confirmToiletShow: false,
         reviewInputItemShow: false,
     },
@@ -25,6 +25,18 @@ export default {
     reducers: {
         save(state, action) {
             return { ...state, ...action.payload };
+        },
+        clear(state) {
+            return {
+                ...state,
+                ...{
+                    toiletContributeShow: false,
+                    toiletInforShow: false,
+                    toiletOptionsShow: false,
+                    confirmToiletShow: false,
+                    reviewInputItemShow: false,
+                },
+            };
         },
     },
 };
