@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'; 
+import axios from 'axios';
 import { connect } from "dva";
 // import styles from "./ReportIssue.css";
 import styled from "styled-components";
@@ -146,6 +147,13 @@ class ReportIssue extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    const handleImageUpload = async (e) => {
+      try {
+        const formData = new FormData()
+        formData.append('image', e.target.files)
+        // const response = await httpClientInstance.post('/3/image', formData)
+      } catch (error) { }
+    }
     return (
       <ToiletOptionsContainer>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
@@ -176,6 +184,17 @@ class ReportIssue extends React.Component {
             variant="outlined"
             className={classes.textFieldIssue}
           />
+          <label htmlFor="imageUpload">
+            {/* {children} */}
+            upload photo
+            <input
+              id="imageUpload"
+              type="file"
+              accept="image/*"
+              style={{ visibility: 'hidden', position: 'absolute' }}
+              onChange={handleImageUpload}
+            />
+          </label>
 
           <ConfirmationButton
             onClick={() => this.handleSubmit()}
