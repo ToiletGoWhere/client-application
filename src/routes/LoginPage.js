@@ -20,7 +20,7 @@ const ConfirmationContainer = styled.div`
 
 const ConfirmationButton = styled.div`
     height: 40px;
-    width: 100px;
+    width: 331px;
     border-radius: 5px;
     padding-top: 8px;
     left: 50%;

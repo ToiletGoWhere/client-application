@@ -12,13 +12,12 @@
 
 .Pic {
     text-align: center;
-    width: 280px;
-    height: 100px;
+    width: 90%;
+    display: block;
+    margin: 88px auto 44px auto;
 }
 
 .textField {
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    /* position: absolute; */
+    margin: 22px;
 }
