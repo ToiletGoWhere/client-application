@@ -75,8 +75,8 @@ class UpdateProfile extends React.Component {
     this.state = {
       name: 'hai',
       labelWidth: 0,
-      category: '1',
-      username: '',
+      category: this.props.toiletData.currentUser.toiletType,
+      username: this.props.toiletData.currentUser.username,
     };
   }
   componentDidMount() { }
