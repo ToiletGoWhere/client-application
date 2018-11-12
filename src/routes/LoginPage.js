@@ -20,7 +20,7 @@ const ConfirmationContainer = styled.div`
 
 const ConfirmationButton = styled.div`
     height: 40px;
-    width: 353px;
+    width: 100px;
     border-radius: 5px;
     padding-top: 8px;
     left: 50%;
@@ -126,32 +126,41 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className={styles.Root}>
-                <div className={styles.Topic}>Toilet go where</div>
+                <div>
+                    <img
+                        src="https://i.imgur.com/r8CwlyM.png"
+                        alt="Toilet go where"
+                        className={styles.Pic}
+                    />
+                </div>
 
-                <TextField
-                    id="outlined-email-input"
-                    label="Email"
-                    className={styles.textField}
-                    type="email"
-                    name="email"
-                    variant="outlined"
-                    value={this.state.email}
-                    onChange={this.handleUserChange}
-                />
-
-                <TextField
-                    id="outlined-password-input"
-                    label="Password"
-                    className={styles.textField}
-                    type="password"
-                    variant="outlined"
-                    value={this.state.password}
-                    onChange={this.handlePassChange}
-                />
+                <div className={styles.textField}>
+                    <TextField
+                        id="outlined-email-input"
+                        label="Email"
+                        type="email"
+                        name="email"
+                        variant="outlined"
+                        value={this.state.email}
+                        fullWidth
+                        onChange={this.handleUserChange}
+                    />
+                </div>
+                <div className={styles.textField}>
+                    <TextField
+                        fullWidth
+                        id="outlined-password-input"
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        value={this.state.password}
+                        onChange={this.handlePassChange}
+                    />
+                </div>
 
                 <ConfirmationContainer>
                     <ConfirmationButton onClick={() => this.login()}>
-                        CONFIRM
+                        Login
                     </ConfirmationButton>
                 </ConfirmationContainer>
             </div>
