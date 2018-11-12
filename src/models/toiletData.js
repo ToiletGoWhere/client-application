@@ -3,6 +3,7 @@ export default {
 
     state: {
         login: false,
+        currentUser: {},
         gender: "",
         floor: "0",
         currentLocation: { lat: "", lng: "" },
