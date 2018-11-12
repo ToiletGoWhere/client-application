@@ -3,11 +3,12 @@ import { connect } from "dva";
 import "antd/dist/antd.css";
 import { Rate } from "antd";
 import { Divider } from "antd";
-import List from "@material-ui/core/List";
+//import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import styles from "./ReviewListItem.css";
 import ReviewInputPanel from "./ReviewInputPanel";
+import { List, Avatar } from "antd";
 
 class ReviewListItem extends React.Component {
     constructor(props) {
@@ -47,11 +48,19 @@ class ReviewListItem extends React.Component {
             <div className={styles.General}>
                 <div className={styles.ReviewItemContainer}>
                     <div className={styles.Display}>Feedback List</div>
+                    <Divider>Scroll down to see latest review</Divider>
                     <List>
                         {this.props.toiletData.reviewList.map((item, i) => {
                             return (
                                 <ListItem key={i}>
-                                    <ListItemText primary={item.review} />
+                                    <List.Item.Meta
+                                        avatar={
+                                            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                                        }
+                                        title={"username"}
+                                        description={item.review}
+                                    />
+
                                     <Rate
                                         className={styles.DisplayRat}
                                         allowHalf

@@ -72,6 +72,10 @@ class ReviewInputPanel extends React.Component {
 
     componentWillUnmount() {}
 
+    loggedIn() {
+        this.state.props.toiletData === true;
+    }
+
     /*fetchData() {
         this.props.toiletData.reviewList;
     }*/
@@ -119,11 +123,11 @@ class ReviewInputPanel extends React.Component {
     }
 
     //debugging posting part
-    async submitReview() {
+    submitReview() {
         this.generateReviewList();
     }
 
-    async generateReviewList() {
+    generateReviewList() {
         let reviewItem = {
             rating: this.state.activeRating,
             review: this.state.activeReview,
