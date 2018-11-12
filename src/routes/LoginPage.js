@@ -71,36 +71,43 @@ class LoginPage extends React.Component {
     }
 
     async login() {
-        console.log("login function");
+        try {
+            console.log("login function");
 
-        const payload = {
-            email: this.state.email,
-            password: this.state.password,
-        };
-        console.log(payload);
-
-        const response = await loadLogin(payload);
-        console.log("response");
-        console.log(response);
-
-        if (!response.data.token) {
-            console.log("no token");
-            alert("Wrong user name or password");
-            return false;
-        } else {
-            console.log("have token");
-            localStorage.setItem("token", response.data.token);
-            console.log(localStorage);
-            axios.defaults.headers.common = {
-                Authorization: "Bearer ".concat(localStorage.getItem("token")),
+            const payload = {
+                email: this.state.email,
+                password: this.state.password,
             };
-            this.props.dispatch({
-                type: "toiletData/save",
-                payload: {
-                    login: "true",
-                },
-            });
-            return true;
+            console.log(payload);
+
+            const response = await loadLogin(payload);
+            console.log("response");
+            console.log(response);
+
+            if (!response.data.token || response > 200) {
+                console.log("no token");
+                alert("Wrong user name or password");
+                return false;
+            } else {
+                console.log("have token");
+                localStorage.setItem("token", response.data.token);
+                console.log(localStorage);
+                axios.defaults.headers.common = {
+                    Authorization: "Bearer ".concat(
+                        localStorage.getItem("token"),
+                    ),
+                };
+                this.props.dispatch({
+                    type: "toiletData/save",
+                    payload: {
+                        login: "true",
+                    },
+                });
+                return true;
+            }
+        } catch (error) {
+            alert("Wrong user name or password");
+            console.log(error);
         }
     }
 
@@ -130,14 +137,6 @@ class LoginPage extends React.Component {
                     variant="outlined"
                     value={this.state.email}
                     onChange={this.handleUserChange}
-                    onPressEnter={() =>
-                        this.props.dispatch({
-                            type: "toiletData/save",
-                            payload: {
-                                email: this.state.email,
-                            },
-                        })
-                    }
                 />
 
                 <TextField
@@ -148,14 +147,6 @@ class LoginPage extends React.Component {
                     variant="outlined"
                     value={this.state.password}
                     onChange={this.handlePassChange}
-                    onPressEnter={() =>
-                        this.props.dispatch({
-                            type: "toiletData/save",
-                            payload: {
-                                password: this.state.password,
-                            },
-                        })
-                    }
                 />
 
                 <ConfirmationContainer>
