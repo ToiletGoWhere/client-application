@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "dva";
 import styled from "styled-components";
 import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import classNames from 'classnames';
 
 const ToiletOptionsContainer = styled.div`
   background-color: #f2f2f2;
@@ -15,17 +17,31 @@ const ToiletOptionsContainer = styled.div`
 const styles = theme => ({
   labelStyle: {
     marginTop: '10px',
-    marginLeft: '10px',
+    display: 'flex',
+    justifyContent: 'center',
     paddingBottom: 0,
     fontWeight: 500,
     fontSize: '20px'
   },
   preloadValue: {
-    marginLeft: '10px',
+    display: 'flex',
+    justifyContent: 'center',
     paddingBottom: 0,
     fontWeight: 500,
     fontSize: '15px'
-  }
+  },
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '50px'
+  },
+  avatar: {
+    margin: 10,
+  },
+  bigAvatar: {
+    width: 80,
+    height: 80,
+  },
 });
 
 const ConfirmationButton = styled.div`
@@ -72,8 +88,6 @@ class UpdateProfile extends React.Component {
     this.setState({
       [name]: event.target.value,
     });
-    // console.log(this.state['category']);
-    // console.log(this.state['multiline']);
   };
   handleSubmit = event => {
   }
@@ -81,14 +95,18 @@ class UpdateProfile extends React.Component {
     const { classes } = this.props;
     return (
       <ToiletOptionsContainer>
+        <div className={classes.row}>
+          <Avatar
+            src="https://goo.gl/images/5Apfi7"
+            className={classNames(classes.avatar, classes.bigAvatar)}
+          />
+        </div>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <div className={classes.labelStyle}>Username:</div>
-          <br />
-          <p className={classes.preloadValue}>preload username</p>
+          <div className={classes.labelStyle}>Username:
+          <span>username</span></div>
           <p></p>
-          <div className={classes.labelStyle}>Preferred Toilet Type:</div>
-          <br />
-          <p className={classes.preloadValue}>preload preferred toilet type</p>
+          <div className={classes.labelStyle}>Preferred Toilet Type:
+          <span>type</span></div>
           <ConfirmationButton
             onClick={() => this.handleSubmit()}
             type="primary"
