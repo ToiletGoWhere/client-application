@@ -41,7 +41,8 @@ class ReviewListItem extends React.Component {
     }*/
 
     //Display ok
-
+    //TODO: Fetch username and avatar from backend
+    //remove avatar & title from list item meta??
     render() {
         //let { activeReviewList } = this.state.activeReviewList;
         return (
@@ -54,10 +55,10 @@ class ReviewListItem extends React.Component {
                             return (
                                 <ListItem key={i}>
                                     <List.Item.Meta
-                                        avatar={
+                                        /*avatar={
                                             <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                        }
-                                        title={"username"}
+                                        }*/
+                                        title={item.email}
                                         description={item.review}
                                     />
 

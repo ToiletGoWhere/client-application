@@ -68,6 +68,7 @@ class ReviewInputPanel extends React.Component {
 
     componentDidMount() {
         this.props.toiletData.reviewList;
+        this.props.toiletData.currentUser;
     }
 
     componentWillUnmount() {}
@@ -129,6 +130,7 @@ class ReviewInputPanel extends React.Component {
 
     generateReviewList() {
         let reviewItem = {
+            email: this.props.toiletData.currentUser.email,
             rating: this.state.activeRating,
             review: this.state.activeReview,
         };
