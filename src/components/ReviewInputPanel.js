@@ -50,7 +50,7 @@ class ReviewInputPanel extends React.Component {
         this.state = {
             activeRating: 5,
             activeReview: "",
-            activeReviewList: [],
+            activeReviewList: this.props.toiletData.reviewList,
         };
     }
 
@@ -67,10 +67,15 @@ class ReviewInputPanel extends React.Component {
     };
 
     componentDidMount() {
-        /*this.fetchData();*/
+        this.props.toiletData.reviewList;
+        this.props.toiletData.currentUser;
     }
 
     componentWillUnmount() {}
+
+    loggedIn() {
+        this.state.props.toiletData === true;
+    }
 
     /*fetchData() {
         this.props.toiletData.reviewList;
@@ -121,34 +126,48 @@ class ReviewInputPanel extends React.Component {
     //debugging posting part
     submitReview() {
         this.generateReviewList();
-        this.logInfo();
     }
 
     generateReviewList() {
         let reviewItem = {
+            email: this.props.toiletData.currentUser.email,
             rating: this.state.activeRating,
             review: this.state.activeReview,
         };
 
-        this.setState({
-            activeReviewList: [...this.state.activeReviewList, reviewItem],
-        });
+        this.setState(
+            {
+                activeReviewList: [...this.state.activeReviewList, reviewItem],
+            },
+            () => {
+                this.props.dispatch({
+                    type: "toiletData/save",
+                    payload: {
+                        currentRating: this.state.activeRating,
+                        currentReview: this.state.activeReview,
+                        reviewList: this.state.activeReviewList,
+                    },
+                });
+            },
+        );
 
-        this.props.dispatch({
+        /*this.props.dispatch({
             type: "toiletData/save",
             payload: {
                 currentRating: this.state.activeRating,
                 currentReview: this.state.activeReview,
                 reviewList: this.state.activeReviewList,
             },
-        });
+        });*/
+
+        console.log(`Review List: ${this.props.toiletData.reviewList}`);
     }
 
-    logInfo() {
+    /*logInfo() {
         //console.log(`Rating: ${this.props.toiletData.currentRating}`);
         //console.log(`Review: ${this.props.toiletData.currentReview}`);
         console.log(`Review List: ${this.props.toiletData.reviewList}`);
-    }
+    }*/
 }
 
 ReviewInputPanel.propTypes = {};
