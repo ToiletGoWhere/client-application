@@ -15,6 +15,32 @@ import MaleIcon from "../assets/icons/MaleIcon";
 import NursingIcon from "../assets/icons/NursingIcon";
 import { loadReview } from "../services/webServices";
 import ComponentCloseButton from "../components/ComponentCloseButton";
+import { routerRedux } from "dva/router";
+
+const ConfirmationButton = styled.div`
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    padding-top: 8px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    cursor: pointer;
+    background: linear-gradient(
+        -45deg,
+        #4169e1,
+        #7363d6,
+        #925dc8,
+        #a858ba,
+        #b855ab,
+        #c3549c
+    );
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    box-sizing: border-box;
+    position: absolute;
+`;
 
 class ToiletInfo extends React.Component {
     constructor(props) {
@@ -145,7 +171,20 @@ class ToiletInfo extends React.Component {
                     Persons give review :
                     {this.props.toiletData.currentToiletSelected.numFeedback}
                 </div>
-                <div className={styles.Display}>Jump to review page: TODO:</div>
+                <div className={styles.Display}>
+                    <ConfirmationButton
+                        active
+                        onClick={() =>
+                            this.props.dispatch(
+                                routerRedux.push({
+                                    pathname: "/",
+                                }),
+                            )
+                        }
+                    >
+                        TODO: View all reviews
+                    </ConfirmationButton>
+                </div>
             </div>
         );
     }
