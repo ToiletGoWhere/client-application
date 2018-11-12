@@ -101,7 +101,7 @@ class LoginPage extends React.Component {
                 });
                 this.props.dispatch(
                     routerRedux.push({
-                        pathname: "/index",
+                        pathname: "/",
                     }),
                 );
                 return true;

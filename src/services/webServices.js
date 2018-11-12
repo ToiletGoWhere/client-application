@@ -5,10 +5,26 @@ export async function pingServer() {
     return response;
 }
 
+export async function pingServerAuth() {
+    const response = httpClientInstance.get("/api/auth/ping");
+    return response;
+}
+
 export async function loadReview(id) {
     const response = httpClientInstance.get("/api/feedbacks/" + id);
     return response;
 }
+
+export async function postReview(payload) {
+    console.log("webServices called:");
+    console.log(payload);
+    const response = httpClientInstance.post(
+        `/api/auth/feedbacks/${payload.tId}`,
+        payload,
+    );
+    return response;
+}
+
 export async function contributeNewToiletServer(payload) {
     console.log("webServices called:");
     console.log(payload);
@@ -17,8 +33,6 @@ export async function contributeNewToiletServer(payload) {
 }
 
 export async function reportIssueServer(payload) {
-    console.log("webServices called:");
-    console.log(payload);
     const response = httpClientInstance.post("/api/auth/reports/", payload);
     return response;
 }

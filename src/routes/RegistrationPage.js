@@ -6,11 +6,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
-import { loadLogin } from "../services/webServices";
 import { register } from "../services/webServices";
 import styled from "styled-components";
 import "antd/dist/antd.css";
-import axios from "axios";
 import { routerRedux } from "dva/router";
 
 const ConfirmationContainer = styled.div`
