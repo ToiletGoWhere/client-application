@@ -14,6 +14,7 @@ import FemaleIcon from "../assets/icons/FemaleIcon";
 import MaleIcon from "../assets/icons/MaleIcon";
 import NursingIcon from "../assets/icons/NursingIcon";
 import { loadReview } from "../services/webServices";
+import ComponentCloseButton from "../components/ComponentCloseButton";
 
 class ToiletInfo extends React.Component {
     constructor(props) {
@@ -44,6 +45,7 @@ class ToiletInfo extends React.Component {
     render() {
         return (
             <div className={styles.General}>
+                <ComponentCloseButton />
                 <div className={styles.gender__container}>
                     <div className={styles.Display}>Gender:</div>
                     {this.props.toiletData.currentToiletSelected.toiletType ===
