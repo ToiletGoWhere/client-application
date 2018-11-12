@@ -24,6 +24,19 @@ class ToiletInfo extends React.Component {
         };
     }
 
+    confirm() {
+        if (this.props.toiletData.currentToiletSelected.confirmed === false) {
+            return (
+                <div className={styles.DisplayConfirm}>
+                    This toilet is contributed by other users, result may not be
+                    accurate.
+                </div>
+            );
+        } else {
+            return;
+        }
+    }
+
     async load() {
         console.log(this.props.toiletData.currentToiletSelected._id);
         console.log(this.props.toiletData.currentToiletSelected.toiletType);
@@ -46,6 +59,7 @@ class ToiletInfo extends React.Component {
         return (
             <div className={styles.General}>
                 <ComponentCloseButton />
+                {this.confirm()}
                 <div className={styles.gender__container}>
                     <div className={styles.Display}>Gender:</div>
                     {this.props.toiletData.currentToiletSelected.toiletType ===
@@ -116,8 +130,7 @@ class ToiletInfo extends React.Component {
                         </SelectionButton>
                     )}
                 </div>
-
-                <div className={styles.DisplayOut}>
+                <div className={styles.DisplayOutRat}>
                     Rating:
                     <Rate
                         className={styles.DisplayRat}
@@ -128,31 +141,11 @@ class ToiletInfo extends React.Component {
                         }
                     />
                 </div>
-
                 <div className={styles.Display}>
                     Persons give review :
                     {this.props.toiletData.currentToiletSelected.numFeedback}
                 </div>
-
-                <div className={styles.Display}>Review:</div>
-                <div className={styles.Root}>
-                    {this.state.reviewList.map((item, i) => {
-                        return (
-                            <List>
-                                <li>
-                                    <ul className={styles.Ul}>
-                                        <ListItem key={i}>
-                                            <ListItemText
-                                                primary={item.content}
-                                            />
-                                        </ListItem>
-                                    </ul>
-                                </li>
-                                <Divider className={styles.Divi} />
-                            </List>
-                        );
-                    })}
-                </div>
+                <div className={styles.Display}>Jump to review page: TODO:</div>
             </div>
         );
     }
