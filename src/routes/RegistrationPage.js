@@ -6,10 +6,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
-import { loadLogin } from "../services/webServices";
+import { register } from "../services/webServices";
 import styled from "styled-components";
 import "antd/dist/antd.css";
-import axios from "axios";
+import { routerRedux } from "dva/router";
 
 const ConfirmationContainer = styled.div`
     height: 80px;
@@ -77,46 +77,34 @@ class RegistrationPage extends React.Component {
         alert("good");
     }
 
-    async register() {}
-
-    async login() {
+    async register() {
         try {
-            console.log("login function");
-
-            const payload = {
-                email: this.state.email,
-                password: this.state.password,
-            };
-            console.log(payload);
-
-            const response = await loadLogin(payload);
-            console.log("response");
-            console.log(response);
-
-            if (!response.data.token || response > 200) {
-                console.log("no token");
-                alert("Wrong user name or password");
-                return false;
+            console.log(this.state.email);
+            console.log(this.state.password);
+            console.log(this.state.confirmPassword);
+            if (this.state.password !== this.state.confirmPassword) {
+                alert("Password not match");
+                return;
             } else {
-                console.log("have token");
-                localStorage.setItem("token", response.data.token);
-                console.log(localStorage);
-                axios.defaults.headers.common = {
-                    Authorization: "Bearer ".concat(
-                        localStorage.getItem("token"),
-                    ),
+                const payload = {
+                    email: this.state.email,
+                    password: this.state.password,
                 };
-                this.props.dispatch({
-                    type: "toiletData/save",
-                    payload: {
-                        login: "true",
-                    },
-                });
-                return true;
+
+                console.log(payload);
+                const response = await register(payload);
+                console.log(response);
+
+                this.props.dispatch(
+                    routerRedux.push({
+                        pathname: "/login",
+                    }),
+                );
+
+                return;
             }
         } catch (error) {
-            alert("Wrong user name or password");
-            console.log(error);
+            alert("Password not match");
         }
     }
 
