@@ -1,42 +1,42 @@
 export default {
-    namespace: "navigator",
+  namespace: "navigator",
 
-    state: {
-        toiletContributeShow: false,
-        toiletInforShow: false,
-        toiletOptionsShow: false,
-        confirmToiletShow: false,
-        reviewInputItemShow: false,
-    },
+  state: {
+    toiletContributeShow: false,
+    toiletInfoShow: false,
+    toiletOptionsShow: false,
+    confirmToiletShow: false,
+    reviewInputItemShow: false
+  },
 
-    subscriptions: {
-        setup({ dispatch, history }) {
-            // eslint-disable-line
-        },
-    },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      // eslint-disable-line
+    }
+  },
 
-    effects: {
-        *fetch({ payload }, { call, put }) {
-            // eslint-disable-line
-            yield put({ type: "save" });
-        },
-    },
+  effects: {
+    *fetch({ payload }, { call, put }) {
+      // eslint-disable-line
+      yield put({ type: "save" });
+    }
+  },
 
-    reducers: {
-        save(state, action) {
-            return { ...state, ...action.payload };
-        },
-        clear(state) {
-            return {
-                ...state,
-                ...{
-                    toiletContributeShow: false,
-                    toiletInforShow: false,
-                    toiletOptionsShow: false,
-                    confirmToiletShow: false,
-                    reviewInputItemShow: false,
-                },
-            };
-        },
+  reducers: {
+    save(state, action) {
+      return { ...state, ...action.payload };
     },
+    clear(state) {
+      return {
+        ...state,
+        ...{
+          toiletContributeShow: false,
+          toiletInfoShow: false,
+          toiletOptionsShow: false,
+          confirmToiletShow: false,
+          reviewInputItemShow: false
+        }
+      };
+    }
+  }
 };
