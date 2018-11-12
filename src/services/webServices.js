@@ -5,6 +5,11 @@ export async function pingServer() {
     return response;
 }
 
+export async function pingServerAuth() {
+    const response = httpClientInstance.get("/api/auth/ping");
+    return response;
+}
+
 export async function loadReview(id) {
     const response = httpClientInstance.get("/api/feedbacks/" + id);
     return response;
