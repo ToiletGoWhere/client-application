@@ -7,6 +7,8 @@ import { Input } from "antd";
 import generateReviewList from "./ReviewListItem";
 import styles from "./ReviewListItem.css";
 import { Alert } from "antd";
+import { postReview } from "../services/webServices";
+import { loadReview } from "../services/webServices";
 
 const { TextArea } = Input;
 
@@ -50,7 +52,7 @@ class ReviewInputPanel extends React.Component {
         this.state = {
             activeRating: 5,
             activeReview: "",
-            activeReviewList: this.props.toiletData.reviewList,
+            activeReviewList: [],
         };
     }
 
@@ -67,8 +69,7 @@ class ReviewInputPanel extends React.Component {
     };
 
     componentDidMount() {
-        this.props.toiletData.reviewList;
-        this.props.toiletData.currentUser;
+        this.load();
     }
 
     componentWillUnmount() {}
@@ -77,9 +78,18 @@ class ReviewInputPanel extends React.Component {
         this.state.props.toiletData === true;
     }
 
-    /*fetchData() {
-        this.props.toiletData.reviewList;
-    }*/
+    async load() {
+        console.log(this.props.toiletData.currentToiletSelected._id);
+        console.log(this.props.toiletData.currentUser.username);
+        //console.log(this.props.toiletData.currentToiletSelected.toiletType);
+        const response = await loadReview(
+            this.props.toiletData.currentToiletSelected._id,
+        );
+        console.log(response);
+        /*this.setState({
+            activeReviewList: response.data,
+        });*/
+    }
 
     //OK:
     render() {
@@ -90,14 +100,6 @@ class ReviewInputPanel extends React.Component {
                         //className={"rating"}
                         allowHalf
                         onChange={this.handleChange}
-                        /*onHoverChange={() =>
-                            this.props.dispatch({
-                                type: "toiletData/save",
-                                payload: {
-                                    currentRating: this.state.activeRating,
-                                },
-                            })
-                        }*/
                     />
                 </span>
                 <div className={styles.Display}>Write a review.</div>
@@ -106,17 +108,14 @@ class ReviewInputPanel extends React.Component {
                     //className={"review"}
                     placeholder="Review goes here..."
                     onChange={this.handleActiveReviewChange}
-                    /*onPressEnter={() =>
-                        this.props.dispatch({
-                            type: "toiletData/save",
-                            payload: {
-                                currentReview: this.state.activeReview,
-                            },
-                        })
-                    }*/
                     autosize={{ minRows: 2, maxRows: 6 }}
                 />
-                <ConfirmationButton onClick={() => this.submitReview()}>
+                <ConfirmationButton
+                    onClick={e => {
+                        e.stopPropagation();
+                        this.generateReviewList();
+                    }}
+                >
                     CONFIRM
                 </ConfirmationButton>
             </RatingContainer>
@@ -124,11 +123,26 @@ class ReviewInputPanel extends React.Component {
     }
 
     //debugging posting part
-    submitReview() {
+    /*submitReview() {
         this.generateReviewList();
-    }
+    }*/
 
-    generateReviewList() {
+    async generateReviewList() {
+        // const submitReview = async () => {
+        const payload = {
+            tId:
+                this.props.toiletData.currentToiletSelected._id ||
+                "fkanan123124",
+            // user: this.props.toiletData.currentUser,
+            content: this.state.activeReview,
+            rating: this.state.activeRating,
+        };
+        const response = await postReview(payload);
+        console.log(response);
+        // };
+        // submitReview();
+    }
+    /*generateReviewList() {
         let reviewItem = {
             email: this.props.toiletData.currentUser.email,
             rating: this.state.activeRating,
@@ -150,18 +164,8 @@ class ReviewInputPanel extends React.Component {
                 });
             },
         );
-
-        /*this.props.dispatch({
-            type: "toiletData/save",
-            payload: {
-                currentRating: this.state.activeRating,
-                currentReview: this.state.activeReview,
-                reviewList: this.state.activeReviewList,
-            },
-        });*/
-
         console.log(`Review List: ${this.props.toiletData.reviewList}`);
-    }
+    } */
 
     /*logInfo() {
         //console.log(`Rating: ${this.props.toiletData.currentRating}`);
