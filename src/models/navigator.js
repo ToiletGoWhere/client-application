@@ -3,7 +3,7 @@ export default {
 
   state: {
     toiletContributeShow: false,
-    toiletInforShow: false,
+    toiletInfoShow: false,
     toiletOptionsShow: false,
     confirmToiletShow: false,
     reviewInputItemShow: false
