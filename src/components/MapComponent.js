@@ -2,7 +2,12 @@ import React from "react";
 import { connect } from "dva";
 import styled from "styled-components";
 
-import { LocationSearching, Search, Add, Remove } from "@material-ui/icons";
+import {
+  LocationSearching,
+  Search,
+  Remove,
+  AddLocation
+} from "@material-ui/icons";
 
 import loadPosition from "../utils/locator";
 import load_google_maps from "../utils/googleMap";
@@ -276,7 +281,16 @@ class MapComponent extends React.Component {
           <LocationSearching />
         </ReloadLocationButton>
         <SearchButton>
-          <Search />
+          <Search
+            onClick={() => {
+              this.props.dispatch({
+                type: "navigator/save",
+                payload: {
+                  toiletInforShow: true
+                }
+              });
+            }}
+          />
         </SearchButton>
         <ContributeButton>
           {this.props.navigator.toiletContributeShow ? (
@@ -292,15 +306,15 @@ class MapComponent extends React.Component {
                     }
                   }
                 });
-
                 if (this.state.markerUpload != null) {
                   this.state.markerUpload.setMap(null);
                 }
+                console.log("Uploading toilet location reset");
               }}
             />
           ) : (
-            <Add
-              onClick={() =>
+            <AddLocation
+              onClick={e =>
                 this.props.dispatch({
                   type: "navigator/save",
                   payload: {
