@@ -130,9 +130,7 @@ class ReviewInputPanel extends React.Component {
     async generateReviewList() {
         // const submitReview = async () => {
         const payload = {
-            tId:
-                this.props.toiletData.currentToiletSelected._id ||
-                "fkanan123124",
+            tId: this.props.toiletData.currentToiletSelected._id, //||"fkanan123124",
             // user: this.props.toiletData.currentUser,
             content: this.state.activeReview,
             rating: this.state.activeRating,
