@@ -37,6 +37,15 @@ export async function reportIssueServer(payload) {
     return response;
 }
 
+export async function updateProfileServer(payload) {
+    console.log("webServices called:");
+    console.log(payload);
+    const response = httpClientInstance.put("/api/auth/users", payload);
+    console.log("webservices response:");
+    console.log(response);
+    return response;
+}
+
 export async function confirmToiletServer(payload) {
     console.log("webServices called:");
     console.log(payload);

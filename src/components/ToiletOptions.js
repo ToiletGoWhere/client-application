@@ -13,6 +13,7 @@ const ToiletOptionsContainer = styled.div`
     bottom: 0;
     position: fixed;
     z-index: 999;
+    box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4);
 `;
 const LocationErrorContainer = styled.div`
     height: 40px;
@@ -96,9 +97,7 @@ class ToiletOptions extends React.Component {
         return (
             <ToiletOptionsContainer>
                 <ComponentCloseButton />
-                <LocationErrorContainer>
-                    Not Correct Location? Relocate
-                </LocationErrorContainer>
+                <LocationErrorContainer />
                 <GenderSelection />
                 <FloorSelection />
                 <ConfirmationContainer>

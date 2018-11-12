@@ -13,7 +13,7 @@ const ToiletOptionsContainer = styled.div`
     bottom: 0;
     position: fixed;
     z-index: 999;
-    padding-top: 40px;
+    box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4);
 `;
 const ConfirmationContainer = styled.div`
     height: 80px;
@@ -45,6 +45,14 @@ const ConfirmationButton = styled.div`
     position: absolute;
 `;
 
+const MessageContainer = styled.div`
+    height: 40px;
+    color: #4169e1;
+    padding: 11px;
+    box-sizing: border-box;
+    cursor: pointer;
+`;
+
 class ContributeNewToilet extends React.Component {
     constructor(props) {
         super(props);
@@ -72,6 +80,9 @@ class ContributeNewToilet extends React.Component {
         return (
             <ToiletOptionsContainer>
                 <ComponentCloseButton />
+                <MessageContainer>
+                    Contribute a new toilet location
+                </MessageContainer>
                 <GenderSelection />
                 <FloorSelection />
                 <ConfirmationContainer>
