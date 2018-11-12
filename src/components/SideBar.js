@@ -10,12 +10,12 @@ import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ProfileIcon from '@material-ui/icons/AccountCircle';
-import RegisterIcon from '@material-ui/icons/AccountBox';
-import LoginIcon from '@material-ui/icons/ExitToApp';
-import ReportIcon from '@material-ui/icons/ReportProblem';
-import DiscoveryIcon from '@material-ui/icons/AddLocation';
-import LogoutIcon from '@material-ui/icons/Reply';
+import ProfileIcon from "@material-ui/icons/AccountCircle";
+import RegisterIcon from "@material-ui/icons/AccountBox";
+import LoginIcon from "@material-ui/icons/ExitToApp";
+import ReportIcon from "@material-ui/icons/ReportProblem";
+import DiscoveryIcon from "@material-ui/icons/AddLocation";
+import LogoutIcon from "@material-ui/icons/Reply";
 import { connect } from "dva";
 import { routerRedux } from "dva/router";
 
@@ -23,7 +23,10 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    backgroundColor: "transparent",
+    zIndex: "1000",
+    position: "absolute"
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -91,36 +94,51 @@ class SideBar extends React.Component {
             e.stopPropagation();
             this.props.dispatch(routerRedux.push({ pathname: "/profile" }));
           }}
-        ><ListItemIcon><ProfileIcon /></ListItemIcon>
+        >
+          <ListItemIcon>
+            <ProfileIcon />
+          </ListItemIcon>
           Profile
-                </ListItem>
+        </ListItem>
         <ListItem
           className={styles.report__text}
           onClick={e => {
             e.stopPropagation();
             this.props.dispatch(routerRedux.push({ pathname: "/report" }));
           }}
-        ><ListItemIcon><ReportIcon /></ListItemIcon>
+        >
+          <ListItemIcon>
+            <ReportIcon />
+          </ListItemIcon>
           Report
-                </ListItem>
+        </ListItem>
         <ListItem
           className={styles.discovery__text}
           onClick={e => {
             e.stopPropagation();
-            this.props.dispatch(routerRedux.push({ pathname: "/new_discovery" }));
+            this.props.dispatch(
+              routerRedux.push({ pathname: "/new_discovery" })
+            );
           }}
-        ><ListItemIcon><DiscoveryIcon /></ListItemIcon>
+        >
+          <ListItemIcon>
+            <DiscoveryIcon />
+          </ListItemIcon>
           New Discovery
-                </ListItem>
+        </ListItem>
         <ListItem
           className={styles.logout__text}
           onClick={e => {
             e.stopPropagation();
-            localStorage.clear()
+            localStorage.clear();
             this.props.dispatch(routerRedux.push({ pathname: "/logout" }));
           }}
-        ><ListItemIcon><LogoutIcon /></ListItemIcon>
-          Logout</ListItem>
+        >
+          <ListItemIcon>
+            <LogoutIcon />
+          </ListItemIcon>
+          Logout
+        </ListItem>
       </List>
     );
     const sidebarWithoutLogin = (
@@ -131,36 +149,48 @@ class SideBar extends React.Component {
             e.stopPropagation();
             this.props.dispatch(routerRedux.push({ pathname: "/login" }));
           }}
-        ><ListItemIcon><LoginIcon /></ListItemIcon>
+        >
+          <ListItemIcon>
+            <LoginIcon />
+          </ListItemIcon>
           Login
-                </ListItem>
+        </ListItem>
         <ListItem
           className={styles.report__text}
           onClick={e => {
             e.stopPropagation();
             this.props.dispatch(routerRedux.push({ pathname: "/register" }));
           }}
-        ><ListItemIcon><RegisterIcon /></ListItemIcon>
+        >
+          <ListItemIcon>
+            <RegisterIcon />
+          </ListItemIcon>
           Register
-                </ListItem>
+        </ListItem>
         <ListItem
           className={styles.discovery__text}
           onClick={e => {
             e.stopPropagation();
             this.props.dispatch(routerRedux.push({ pathname: "/login" }));
           }}
-        ><ListItemIcon><ReportIcon /></ListItemIcon>
+        >
+          <ListItemIcon>
+            <ReportIcon />
+          </ListItemIcon>
           Report
-                </ListItem>
+        </ListItem>
         <ListItem
           className={styles.logout__text}
           onClick={e => {
             e.stopPropagation();
             this.props.dispatch(routerRedux.push({ pathname: "/login" }));
           }}
-        ><ListItemIcon><DiscoveryIcon /></ListItemIcon>
+        >
+          <ListItemIcon>
+            <DiscoveryIcon />
+          </ListItemIcon>
           New Discovery
-                </ListItem>
+        </ListItem>
       </List>
     );
 
