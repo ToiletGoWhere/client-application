@@ -45,3 +45,14 @@ export async function loadLogin(payload) {
     const response = httpClientInstance.put("/api/login", payload);
     return response;
 }
+
+export function setHeader() {
+    httpClientInstance.defaults.headers.common = {
+        Authorization: "Bearer ".concat(localStorage.getItem("token")),
+    };
+}
+
+export async function register(payload) {
+    const response = httpClientInstance.post("/api/users", payload);
+    return response;
+}
