@@ -179,7 +179,7 @@ class SideBar extends React.Component {
           </ListItemIcon>
           Report
         </ListItem>
-        <ListItem
+        {/* <ListItem
           className={styles.logout__text}
           onClick={e => {
             e.stopPropagation();
@@ -190,7 +190,7 @@ class SideBar extends React.Component {
             <DiscoveryIcon />
           </ListItemIcon>
           New Discovery
-        </ListItem>
+        </ListItem> */}
       </List>
     );
 

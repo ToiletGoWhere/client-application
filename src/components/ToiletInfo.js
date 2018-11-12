@@ -13,31 +13,7 @@ import Divider from "@material-ui/core/Divider";
 import FemaleIcon from "../assets/icons/FemaleIcon";
 import MaleIcon from "../assets/icons/MaleIcon";
 import NursingIcon from "../assets/icons/NursingIcon";
-import axios from "axios";
 import { loadReview } from "../services/webServices";
-
-const RatingContainer = styled.div`
-    width: 100%;
-    text-align: center;
-`;
-
-const cardStyles = theme => ({
-    root: {
-        width: "100%",
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-        position: "relative",
-        overflow: "auto",
-        maxHeight: 300,
-    },
-    listSection: {
-        backgroundColor: "inherit",
-    },
-    ul: {
-        backgroundColor: "inherit",
-        padding: 0,
-    },
-});
 
 class ToiletInfo extends React.Component {
     constructor(props) {

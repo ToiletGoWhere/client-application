@@ -126,6 +126,10 @@ class MapComponent extends React.Component {
       map.setZoom(19);
       curMarker.setPosition(this.state.currentLocation);
       curMarker.setMap(map);
+
+      this.props.dispatch({
+        type: "navigator/clear"
+      });
     });
   }
 
@@ -208,6 +212,12 @@ class MapComponent extends React.Component {
               currentToiletSelected: JSON.parse(marker.getTitle())
             }
           });
+          this.props.dispatch({
+            type: "navigator/save",
+            payload: {
+              toiletInfoShow: true
+            }
+          });
         });
 
         markerList.push(marker);
@@ -258,6 +268,12 @@ class MapComponent extends React.Component {
               currentToiletSelected: JSON.parse(marker.getTitle())
             }
           });
+          this.props.dispatch({
+            type: "navigator/save",
+            payload: {
+              toiletInfoShow: true
+            }
+          });
         });
         markerList.push(marker);
       }
@@ -286,7 +302,7 @@ class MapComponent extends React.Component {
               this.props.dispatch({
                 type: "navigator/save",
                 payload: {
-                  toiletInforShow: true
+                  toiletOptionsShow: true
                 }
               });
             }}
