@@ -14,6 +14,17 @@ export async function loadReview(id) {
     const response = httpClientInstance.get("/api/feedbacks/" + id);
     return response;
 }
+
+export async function postReview(payload) {
+    console.log("webServices called:");
+    console.log(payload);
+    const response = httpClientInstance.post(
+        `/api/auth/feedbacks/${payload.tId}`,
+        payload,
+    );
+    return response;
+}
+
 export async function contributeNewToiletServer(payload) {
     console.log("webServices called:");
     console.log(payload);
@@ -23,6 +34,15 @@ export async function contributeNewToiletServer(payload) {
 
 export async function reportIssueServer(payload) {
     const response = httpClientInstance.post("/api/auth/reports/", payload);
+    return response;
+}
+
+export async function updateProfileServer(payload) {
+    console.log("webServices called:");
+    console.log(payload);
+    const response = httpClientInstance.put("/api/auth/users", payload);
+    console.log("webservices response:");
+    console.log(response);
     return response;
 }
 

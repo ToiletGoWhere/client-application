@@ -9,6 +9,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import styles from "./ReviewListItem.css";
 import ReviewInputPanel from "./ReviewInputPanel";
 import { List, Avatar } from "antd";
+import { loadReview } from "../services/webServices";
 
 class ReviewListItem extends React.Component {
     constructor(props) {
@@ -25,25 +26,31 @@ class ReviewListItem extends React.Component {
 
     componentWillUnmount() {}
 
-    /*async generateReviewList() {
-        //let rating = this.props.toiletData.currentRating;
-        //let review = this.props.toiletData.currentReview;
-        this.setState({
-            activeReviewList: [...this.state.activeReviewList, rating, review],
+    async handleReviewSearch(toiletId) {
+        const response = await loadReview(toiletId);
+        console.log(response);
+
+        this.props.dispatch({
+            type: "toiletData/save",
+            payload: {
+                reviewList: response.data,
+            },
         });
 
         this.props.dispatch({
             type: "toiletData/save",
             payload: {
-                reviewList: this.state.activeReviewList,
+                updatedResults: true,
             },
         });
-    }*/
+    }
 
     //Display ok
     //update to fetch username
     render() {
-        //let { activeReviewList } = this.state.activeReviewList;
+        // let { activeReviewList } = this.state.activeReviewList;
+        // this.handleReviewSearch(toiletId);
+
         return (
             <div className={styles.General}>
                 <div className={styles.ReviewItemContainer}>
@@ -54,11 +61,9 @@ class ReviewListItem extends React.Component {
                             return (
                                 <ListItem key={i}>
                                     <List.Item.Meta
-                                        avatar={
-                                            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                        }
-                                        title={item.email}
-                                        description={item.review}
+                                        avatar={item.user.avatar}
+                                        title={item.user.username}
+                                        description={item.content}
                                     />
 
                                     <Rate
