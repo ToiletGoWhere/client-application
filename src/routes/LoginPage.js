@@ -7,9 +7,10 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import { loadLogin } from "../services/webServices";
+import { setHeader } from "../services/webServices";
 import styled from "styled-components";
+import { routerRedux } from "dva/router";
 import "antd/dist/antd.css";
-import axios from "axios";
 
 const ConfirmationContainer = styled.div`
     height: 80px;
@@ -83,25 +84,26 @@ class LoginPage extends React.Component {
             console.log("response");
             console.log(response);
 
-            if (!response.data.token || response > 200) {
+            if (!response.data.token || response >= 300) {
                 console.log("no token");
                 alert("Wrong user name or password");
                 return false;
             } else {
                 console.log("have token");
                 localStorage.setItem("token", response.data.token);
-                console.log(localStorage);
-                axios.defaults.headers.common = {
-                    Authorization: "Bearer ".concat(
-                        localStorage.getItem("token"),
-                    ),
-                };
+                setHeader();
                 this.props.dispatch({
                     type: "toiletData/save",
                     payload: {
-                        login: "true",
+                        login: true,
+                        currentUser: response.data.user,
                     },
                 });
+                this.props.dispatch(
+                    routerRedux.push({
+                        pathname: "/index",
+                    }),
+                );
                 return true;
             }
         } catch (error) {
