@@ -1,16 +1,14 @@
 import React from "react";
 import { connect } from "dva";
 import styles from "./LoginPage.css";
-import ToiletOptions from "../components/ToiletOptions";
-import { withStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import { loadLogin } from "../services/webServices";
 import styled from "styled-components";
 import "antd/dist/antd.css";
-import { Input } from "antd";
 import axios from "axios";
 
 const ConfirmationContainer = styled.div`
@@ -46,11 +44,12 @@ const ConfirmationButton = styled.div`
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            email: "",
-            password: "",
-        };
+        this.state = { email: "", password: "", showPassword: false };
     }
+
+    handleClickShowPassword = () => {
+        this.setState(state => ({ showPassword: !state.showPassword }));
+    };
 
     handleUserChange = e => {
         this.setState({
@@ -136,6 +135,7 @@ class LoginPage extends React.Component {
 
                 <div className={styles.textField}>
                     <TextField
+                        autoFocus
                         id="outlined-email-input"
                         label="Email"
                         type="email"
@@ -151,10 +151,26 @@ class LoginPage extends React.Component {
                         fullWidth
                         id="outlined-password-input"
                         label="Password"
-                        type="password"
+                        type={this.state.showPassword ? "text" : "password"}
                         variant="outlined"
                         value={this.state.password}
                         onChange={this.handlePassChange}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="Toggle password visibility"
+                                        onClick={this.handleClickShowPassword}
+                                    >
+                                        {this.state.showPassword ? (
+                                            <VisibilityOff />
+                                        ) : (
+                                            <Visibility />
+                                        )}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
                     />
                 </div>
 

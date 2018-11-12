@@ -1,0 +1,23 @@
+.Root {
+    width: "100%";
+    position: relative;
+    overflow: auto;
+
+    display: "flex";
+}
+
+.Topic {
+    text-align: center;
+}
+
+.Pic {
+    text-align: center;
+    width: 90%;
+    display: block;
+    margin: 88px auto 44px auto;
+}
+
+.textField {
+    /* position: absolute; */
+    margin: 22px;
+}
