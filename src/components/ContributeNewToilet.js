@@ -48,18 +48,18 @@ class ContributeNewToilet extends React.Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() { }
-  componentWillUnmount() { }
+  componentDidMount() {}
+  componentWillUnmount() {}
 
-  handleSubmit () {
+  handleSubmit() {
     console.log("handleSubmit function called");
     const contributeNewToilet = async () => {
       const payload = {
-        lat: 1.314896,
-        lng: 103.766663,
+        lat: this.props.toiletData.currentLocationSelected.lat,
+        lng: this.props.toiletData.currentLocationSelected.lng,
         lvl: this.props.toiletData.floor,
-        type: this.props.toiletData.gender,
-      }
+        type: this.props.toiletData.gender
+      };
       const response = await contributeNewToiletServer(payload);
       console.log(response);
     };
@@ -72,8 +72,7 @@ class ContributeNewToilet extends React.Component {
         <GenderSelection />
         <FloorSelection />
         <ConfirmationContainer>
-          <ConfirmationButton
-            onClick={() => this.handleSubmit()}>
+          <ConfirmationButton onClick={() => this.handleSubmit()}>
             CONFIRM
           </ConfirmationButton>
         </ConfirmationContainer>

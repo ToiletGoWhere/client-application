@@ -100,7 +100,7 @@ class ToiletInfo extends React.Component {
                                 })
                             }
                         >
-                            <MaleIcon style={{ color: "#FFF" }} />
+                            <MaleIcon active />
                         </SelectionButton>
                     )}
 
@@ -117,7 +117,7 @@ class ToiletInfo extends React.Component {
                                 })
                             }
                         >
-                            <FemaleIcon style={{ color: "#FFF" }} />
+                            <FemaleIcon active />
                         </SelectionButton>
                     )}
 
@@ -134,7 +134,7 @@ class ToiletInfo extends React.Component {
                                 })
                             }
                         >
-                            <NursingIcon style={{ color: "#FFF" }} />
+                            <NursingIcon active />
                         </SelectionButton>
                     )}
                 </div>
