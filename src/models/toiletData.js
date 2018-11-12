@@ -1,7 +1,7 @@
 export default {
   namespace: "toiletData",
 
-<<<<<<< HEAD
+
     state: {
         login: false,
         currentUser: {},
