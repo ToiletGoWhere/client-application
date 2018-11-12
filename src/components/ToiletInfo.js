@@ -40,11 +40,25 @@ class ToiletInfo extends React.Component {
         this.load();
     }
 
+    checkConfirm() {
+        if (this.props.toiletData.currentToiletSelected.confirmed === false) {
+            return (
+                <div className={styles.DisplayCon}>
+                    This toilet is contributed by other users, result may not be
+                    accurate
+                </div>
+            );
+        } else {
+            return;
+        }
+    }
+
     componentWillUnmount() {}
 
     render() {
         return (
             <div className={styles.General}>
+                {this.checkConfirm()}
                 <ComponentCloseButton />
                 <div className={styles.gender__container}>
                     <div className={styles.Display}>Gender:</div>
@@ -116,7 +130,6 @@ class ToiletInfo extends React.Component {
                         </SelectionButton>
                     )}
                 </div>
-
                 <div className={styles.DisplayOut}>
                     Rating:
                     <Rate
@@ -128,11 +141,12 @@ class ToiletInfo extends React.Component {
                         }
                     />
                 </div>
-
                 <div className={styles.Display}>
                     Persons give review :
                     {this.props.toiletData.currentToiletSelected.numFeedback}
                 </div>
+
+                {/* 
 
                 <div className={styles.Display}>Review:</div>
                 <div className={styles.Root}>
@@ -153,6 +167,7 @@ class ToiletInfo extends React.Component {
                         );
                     })}
                 </div>
+                 */}
             </div>
         );
     }
