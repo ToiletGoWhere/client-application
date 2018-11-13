@@ -156,9 +156,9 @@ class MapComponent extends React.Component {
             curMarker.setPosition(this.state.currentLocation);
             curMarker.setMap(map);
 
-            this.props.dispatch({
-                type: "navigator/clear",
-            });
+            // this.props.dispatch({
+            //     type: "navigator/clear",
+            // });
         });
     }
 
@@ -222,7 +222,7 @@ class MapComponent extends React.Component {
     }
 
     componentWillReceiveProps() {
-        if (this.props.navigator.toiletContributeShow === false) {
+        if (this.props.navigator.toiletContributeShow == false) {
             if (this.state.markerUpload != null) {
                 this.state.markerUpload.setMap(null);
             }
@@ -327,6 +327,7 @@ class MapComponent extends React.Component {
                                         type: "navigator/save",
                                         payload: {
                                             confirmToiletShow: true,
+                                            toiletInfoShow: false,
                                         },
                                     });
                                 }
