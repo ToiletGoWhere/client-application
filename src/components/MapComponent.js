@@ -6,7 +6,8 @@ import {
   LocationSearching,
   Search,
   Remove,
-  AddLocation
+  AddLocation,
+  Directions
 } from "@material-ui/icons";
 
 import loadPosition from "../utils/locator";
@@ -75,6 +76,34 @@ const ReloadLocationButton = styled.div`
   border-radius: 5px;
   padding-top: 8px;
   transform: translate(-50%, 50%);
+  cursor: pointer;
+  background: linear-gradient(
+    -45deg,
+    #4169e1,
+    #7363d6,
+    #925dc8,
+    #a858ba,
+    #b855ab,
+    #c3549c
+  );
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index = 1000;
+  align-items: center;
+  text-align: center;
+`;
+
+const DirectionButton = styled.div`
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  padding-top: 8px;
+  transform: translate(-200%, 50%);
   cursor: pointer;
   background: linear-gradient(
     -45deg,
@@ -190,6 +219,12 @@ class MapComponent extends React.Component {
   }
 
   componentWillReceiveProps() {
+    if (this.props.navigator.toiletContributeShow === false) {
+      if (this.state.markerUpload != null) {
+        this.state.markerUpload.setMap(null);
+      }
+    }
+
     if (this.props.toiletData.updatedResults) {
       let markerList = this.props.toiletData.markerList;
       console.log(this.props.toiletData.toiletList);
@@ -253,6 +288,29 @@ class MapComponent extends React.Component {
         >
           <LocationSearching />
         </ReloadLocationButton>
+
+        {this.props.navigator.toiletInfoShow && (
+          <DirectionButton>
+            <Directions
+              onClick={() => {
+                var latDes = this.props.toiletData.currentToiletSelected
+                  .location[0];
+                var longDes = this.props.toiletData.currentToiletSelected
+                  .location[1];
+                var url = "https://www.google.com/maps/dir/?api=1";
+                var origin =
+                  "&origin=" +
+                  this.state.currentLocation.lat +
+                  "," +
+                  this.state.currentLocation.lng;
+                var destination = "&destination=" + latDes + "," + longDes;
+                var newUrl = new URL(url + origin + destination);
+                var win = window.open(newUrl, "_blank");
+                win.focus();
+              }}
+            />
+          </DirectionButton>
+        )}
         <SearchButton>
           <Search
             onClick={() => {
