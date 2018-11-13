@@ -79,3 +79,8 @@ export async function register(payload) {
     const response = httpClientInstance.post("/api/users", payload);
     return response;
 }
+
+export async function uploadAvatar(payload) {
+    const response = httpClientInstance.put("/api/auth/users/avatar", payload);
+    return response;
+}
