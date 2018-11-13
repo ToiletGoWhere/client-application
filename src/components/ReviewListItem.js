@@ -15,49 +15,35 @@ class ReviewListItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //activeRating: this.props.toiletData.currentRating,
-            //activeReview: this.props.toiletData.currentReview,
-            activeReviewList: this.props.toiletData.reviewList,
+            activeReviewList: [],
         };
     }
+
     componentDidMount() {
-        //TODO:
+        this.handleReviewSearch().then(res => {
+            this.setState({
+                activeReviewList: [res.data],
+            });
+        });
     }
 
     componentWillUnmount() {}
 
-    async handleReviewSearch(toiletId) {
-        const response = await loadReview(toiletId);
+    async handleReviewSearch() {
+        const response = await loadReview(
+            this.props.toiletData.currentToiletSelected._id,
+        );
         console.log(response);
-
-        this.props.dispatch({
-            type: "toiletData/save",
-            payload: {
-                reviewList: response.data,
-            },
-        });
-
-        this.props.dispatch({
-            type: "toiletData/save",
-            payload: {
-                updatedResults: true,
-            },
-        });
     }
 
-    //Display ok
-    //update to fetch username
     render() {
-        // let { activeReviewList } = this.state.activeReviewList;
-        // this.handleReviewSearch(toiletId);
-
         return (
             <div className={styles.General}>
                 <div className={styles.ReviewItemContainer}>
                     <div className={styles.Display}>Feedback List</div>
                     <Divider>Scroll down to see latest review</Divider>
                     <List>
-                        {this.props.toiletData.reviewList.map((item, i) => {
+                        {this.state.activeReviewList.map((item, i) => {
                             return (
                                 <ListItem key={i}>
                                     <List.Item.Meta
