@@ -1,17 +1,16 @@
 import React from "react";
+import { uploadAvatar } from "../services/webServices";
 
 const UploadImageWrapper = props => {
-    const { type, children } = props;
+    const { children } = props;
 
-    const handleImageUpload = async (e) => {
+    const handleImageUpload = async e => {
         try {
-            const formData = new FormData()
-            if (type === "report") {
-                formData.append('pic', e.target.files)
-                const response = await httpClientInstance.post('/api/auth/reports/', formData)
-            }
-        } catch (error) { }
-    }
+            const formData = new FormData();
+            formData.append("pic", e.target.files);
+            const response = await uploadAvatar(formData);
+        } catch (error) {}
+    };
     return (
         <label htmlFor="imageUpload">
             {children}
@@ -19,7 +18,7 @@ const UploadImageWrapper = props => {
                 id="imageUpload"
                 type="file"
                 accept="image/*"
-                style={{ visibility: 'hidden', position: 'absolute' }}
+                style={{ visibility: "hidden", position: "absolute" }}
                 onChange={handleImageUpload}
             />
         </label>
