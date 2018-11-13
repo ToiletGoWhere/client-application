@@ -1,4 +1,4 @@
 import axios from "axios";
 export const httpClientInstance = axios.create({
-    baseURL: "192.168.1.89:3000",
+    baseURL: "http://172.31.38.253:3000",
 });
