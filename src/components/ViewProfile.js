@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import classNames from "classnames";
+import { routerRedux } from "dva/router";
 
 const ToiletOptionsContainer = styled.div`
     background-color: #f2f2f2;
@@ -37,7 +38,8 @@ const styles = theme => ({
         marginTop: "50px",
     },
     avatar: {
-        margin: 10,
+        marginTop: "50px",
+        marginBottom: "10px",
     },
     bigAvatar: {
         width: 80,
@@ -85,7 +87,7 @@ class UpdateProfile extends React.Component {
                     <Avatar
                         src={
                             this.props.toiletData.currentUser.avatar ||
-                            "https://goo.gl/images/5Apfi7"
+                            "https://content-static.upwork.com/uploads/2014/10/01073427/profilephoto1.jpg"
                         }
                         className={classNames(
                             classes.avatar,
@@ -118,7 +120,7 @@ class UpdateProfile extends React.Component {
                         }}
                         type="primary"
                         htmlType="submit"
-                        // className={classes.confirmationButton}
+                        className={classes.confirmationButton}
                     >
                         Update
                     </ConfirmationButton>
