@@ -160,15 +160,9 @@ class ReportIssue extends React.Component {
         const { classes } = this.props;
         const handleImageUpload = async e => {
             try {
-                /** For upload multiple pictures
-                const formData = this.state["formData"]
-                    ? this.state["formData"]
-                    : new FormData();
-                    */
                 const formData = new FormData();
-                formData.append("pic", e.target.files);
+                formData.append("pic", e.target.files[0]);
                 this.setState({ formData: formData });
-                // const response = await reportIssueServer(formData);
             } catch (error) {}
         };
         return (
