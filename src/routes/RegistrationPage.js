@@ -135,6 +135,7 @@ class RegistrationPage extends React.Component {
 
                 <div className={styles.textField}>
                     <TextField
+                        autoFocus
                         id="outlined-email-input"
                         label="Email"
                         type="email"
@@ -186,7 +187,22 @@ class RegistrationPage extends React.Component {
                         onChange={this.handleConfirmPassChange}
                     />
                 </div>
-
+                <div
+                    style={{
+                        width: "100%",
+                        textAlign: "center",
+                        color: "#4169e1",
+                    }}
+                    onClick={() => {
+                        this.props.dispatch(
+                            routerRedux.push({
+                                pathname: "/login",
+                            }),
+                        );
+                    }}
+                >
+                    Already have an account? Click to login
+                </div>
                 <ConfirmationContainer>
                     <ConfirmationButton onClick={() => this.register()}>
                         Register

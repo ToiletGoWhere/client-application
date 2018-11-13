@@ -177,7 +177,18 @@ class LoginPage extends React.Component {
                         }}
                     />
                 </div>
-
+                <div
+                    style={{ color: "#4169e1" }}
+                    onClick={() => {
+                        this.props.dispatch(
+                            routerRedux.push({
+                                pathname: "/register",
+                            }),
+                        );
+                    }}
+                >
+                    Not Registered Yet? Click to register.
+                </div>
                 <ConfirmationContainer>
                     <ConfirmationButton onClick={() => this.login()}>
                         Login

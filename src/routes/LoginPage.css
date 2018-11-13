@@ -5,6 +5,8 @@
     overflow: auto;
     background-color: #f7f7f7;
     display: "flex";
+    text-align: center;
+    color: #4169e1;
 }
 
 .Topic {
