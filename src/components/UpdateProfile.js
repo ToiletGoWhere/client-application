@@ -21,6 +21,10 @@ const ToiletOptionsContainer = styled.div`
 
 const categories = [
     {
+        value: "unisex",
+        label: "Not Specified",
+    },
+    {
         value: "female",
         label: "Female",
     },
@@ -95,7 +99,7 @@ class UpdateProfile extends React.Component {
         this.state = {
             name: "hai",
             labelWidth: 0,
-            category: this.props.toiletData.currentUser.toiletType,
+            category: this.props.toiletData.currentUser.toiletType || "unisex",
             username: this.props.toiletData.currentUser.username,
         };
     }
@@ -194,7 +198,8 @@ class UpdateProfile extends React.Component {
                         <TextField
                             id="outlined-select-category"
                             select
-                            label="Preferred Toilet Type"
+                            label="Toilet"
+                            helperText="Default toilet type for searching"
                             className={classes.textField}
                             value={this.state.category}
                             onChange={this.handleChangeText("category")}
