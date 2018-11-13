@@ -46,16 +46,25 @@ class ConfirmToilet extends React.Component {
                         return (
                             <SelectionButton
                                 key={i}
-                                active={this.props.toiletData.choice === item} //FIXME: What is this?
+                                active={this.state.activeChoice === item}
                                 onClick={
                                     () => {
+                                        //FIXME: What is this?
                                         const payload = {
                                             tolietId: this.props.toiletData
                                                 .currentToiletSelected._id,
                                         };
                                         console.log("item:" + item);
-                                        if (item === "YES")
+                                        if (item === "YES") {
+                                            this.setState({
+                                                activeChoice: "YES",
+                                            });
                                             confirmToiletServer(payload);
+                                        } else {
+                                            this.setState({
+                                                activeChoice: "Cancel",
+                                            });
+                                        }
                                     }
                                     // this.props.dispatch({
                                     //   type: "toiletData/save",
