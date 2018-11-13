@@ -27,14 +27,7 @@ class InformationBar extends React.Component {
             }, 3000);
         }
     }
-    handleClose() {
-        this.props.dispatch({
-            type: "navigator/save",
-            payload: {
-                infoBarMessage: "",
-            },
-        });
-    }
+    handleClose() {}
     componentWillUnmount() {}
 
     render() {
@@ -56,7 +49,7 @@ class InformationBar extends React.Component {
                             aria-label="Close"
                             color="inherit"
                             // className={classes.close}
-                            onClick={this.handleClose}
+                            onClick={() => {}}
                         >
                             <CloseIcon />
                         </IconButton>,
