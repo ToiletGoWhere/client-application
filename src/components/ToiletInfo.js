@@ -15,6 +15,32 @@ import MaleIcon from "../assets/icons/MaleIcon";
 import NursingIcon from "../assets/icons/NursingIcon";
 import { loadReview } from "../services/webServices";
 import ComponentCloseButton from "../components/ComponentCloseButton";
+import { routerRedux } from "dva/router";
+
+const ConfirmationButton = styled.div`
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    padding-top: 8px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    cursor: pointer;
+    background: linear-gradient(
+        -45deg,
+        #4169e1,
+        #7363d6,
+        #925dc8,
+        #a858ba,
+        #b855ab,
+        #c3549c
+    );
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    box-sizing: border-box;
+    position: absolute;
+`;
 
 class ToiletInfo extends React.Component {
     constructor(props) {
@@ -22,6 +48,19 @@ class ToiletInfo extends React.Component {
         this.state = {
             reviewList: [],
         };
+    }
+
+    confirm() {
+        if (this.props.toiletData.currentToiletSelected.confirmed === false) {
+            return (
+                <div className={styles.DisplayConfirm}>
+                    This toilet is contributed by other users, result may not be
+                    accurate.
+                </div>
+            );
+        } else {
+            return;
+        }
     }
 
     async load() {
@@ -46,6 +85,7 @@ class ToiletInfo extends React.Component {
         return (
             <div className={styles.General}>
                 <ComponentCloseButton />
+                {this.confirm()}
                 <div className={styles.gender__container}>
                     <div className={styles.Display}>Gender:</div>
                     {this.props.toiletData.currentToiletSelected.toiletType ===
@@ -116,8 +156,7 @@ class ToiletInfo extends React.Component {
                         </SelectionButton>
                     )}
                 </div>
-
-                <div className={styles.DisplayOut}>
+                <div className={styles.DisplayOutRat}>
                     Rating:
                     <Rate
                         className={styles.DisplayRat}
@@ -128,30 +167,23 @@ class ToiletInfo extends React.Component {
                         }
                     />
                 </div>
-
                 <div className={styles.Display}>
                     Persons give review :
                     {this.props.toiletData.currentToiletSelected.numFeedback}
                 </div>
-
-                <div className={styles.Display}>Review:</div>
-                <div className={styles.Root}>
-                    {this.state.reviewList.map((item, i) => {
-                        return (
-                            <List>
-                                <li>
-                                    <ul className={styles.Ul}>
-                                        <ListItem key={i}>
-                                            <ListItemText
-                                                primary={item.content}
-                                            />
-                                        </ListItem>
-                                    </ul>
-                                </li>
-                                <Divider className={styles.Divi} />
-                            </List>
-                        );
-                    })}
+                <div className={styles.Display}>
+                    <ConfirmationButton
+                        active
+                        onClick={() =>
+                            this.props.dispatch(
+                                routerRedux.push({
+                                    pathname: "/",
+                                }),
+                            )
+                        }
+                    >
+                        TODO: View all reviews
+                    </ConfirmationButton>
                 </div>
             </div>
         );
