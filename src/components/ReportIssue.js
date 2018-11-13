@@ -10,15 +10,18 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { reportIssueServer } from "../services/webServices";
 
-const ToiletOptionsContainer = styled.div`
+const ReportIssuesContainer = styled.div`
+    color: #4169e1;
     background-color: #f2f2f2;
     width: 100%;
-    height: 350px;
+    height: 100%;
     left: 0;
     bottom: 0;
     position: fixed;
     z-index: 999;
     box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4);
+    padding: 44px 11px 11px 11px;
+    box-sizing: border-box;
 `;
 
 const categories = [
@@ -62,41 +65,17 @@ const styles = theme => ({
         paddingBottom: 0,
         fontWeight: 500,
     },
-    // confirmationButton: {
-    //   height: '40px',
-    //   width: '353px',
-    //   borderRadius: '5px',
-    //   paddingTop: '8px',
-    //   left: '50%',
-    //   transform: 'translate(-50%, 50%)',
-    //   cursor: 'pointer',
-    //   // marginTop: '10px',
-    //   // marginLeft: '285px',
-    //   // background: 'rgba(0, 0, 0,0.15)',
-    //   // coloe: 'white'
-    //   textAlign: 'center',
-    //   color: '#fff',
-    //   fontSize: '18px',
-    //   fontWeight: '500',
-    //   boxSizing: 'border-box',
-    //   position: 'absolute'
-    // }
+
     fileInput: {
-        // border: " bottom: 4px solid lightgray",
-        // border: "right: 4px solid lightgray",
-        // border: "top: 1px solid black",
-        // border: "left: 1px solid black",
-        // padding: " 10px",
-        // margin: "5px",
         cursor: " pointer",
     },
 });
 
 const ConfirmationButton = styled.div`
     height: 40px;
-    width: 353px;
+    width: 331px;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 42px;
     padding-top: 8px;
     left: 50%;
     transform: translate(-50%, 50%);
@@ -166,7 +145,7 @@ class ReportIssue extends React.Component {
             } catch (error) {}
         };
         return (
-            <ToiletOptionsContainer>
+            <ReportIssuesContainer>
                 <form autoComplete="off" onSubmit={this.handleSubmit}>
                     <div className={classes.categoryLabel}>
                         Please select reporting problem category:
@@ -200,8 +179,6 @@ class ReportIssue extends React.Component {
                         className={classes.textFieldIssue}
                     />
                     <label htmlFor="imageUpload">
-                        {/* {children} */}
-                        {/* upload photo */}
                         <input
                             id="imageUpload"
                             type="file"
@@ -210,6 +187,7 @@ class ReportIssue extends React.Component {
                             style={{
                                 // visibility: "hidden",
                                 position: "absolute",
+                                marginTop: 22,
                             }}
                             onChange={handleImageUpload}
                         />
@@ -224,7 +202,7 @@ class ReportIssue extends React.Component {
                         Submit
                     </ConfirmationButton>
                 </form>
-            </ToiletOptionsContainer>
+            </ReportIssuesContainer>
         );
     }
 }

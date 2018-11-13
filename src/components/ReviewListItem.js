@@ -11,7 +11,7 @@ import ReviewInputPanel from "./ReviewInputPanel";
 import { List, Avatar } from "antd";
 import { loadReview } from "../services/webServices";
 import { ListItemSecondaryAction } from "@material-ui/core";
-
+import BackButton from "./BackButton";
 class ReviewListItem extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +37,7 @@ class ReviewListItem extends React.Component {
     render() {
         return (
             <div className={styles.General}>
+                <BackButton type="review" />
                 <div className={styles.ReviewItemContainer}>
                     <div className={styles.Display}>Feedback List</div>
                     <Divider>Scroll down to see latest review</Divider>

@@ -1,10 +1,16 @@
 .General {
-    height: 300px;
-    padding: 11px;
+    height: 582px;
+    padding-top: 33px;
     color: #4169e1;
     box-sizing: border-box;
     justify-content: flex-start;
     align-items: center;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 999;
+    background-color: #f2f2f2;
+    box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .ReviewItemContainer {

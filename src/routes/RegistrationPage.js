@@ -10,6 +10,7 @@ import { register } from "../services/webServices";
 import styled from "styled-components";
 import "antd/dist/antd.css";
 import { routerRedux } from "dva/router";
+import BackButton from "../components/BackButton";
 
 const ConfirmationContainer = styled.div`
     height: 80px;
@@ -123,6 +124,7 @@ class RegistrationPage extends React.Component {
     render() {
         return (
             <div className={styles.Root}>
+                <BackButton />
                 <div>
                     <img
                         src="https://i.imgur.com/r8CwlyM.png"

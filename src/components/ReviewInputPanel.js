@@ -9,7 +9,7 @@ import styles from "./ReviewListItem.css";
 import { Alert } from "antd";
 import { postReview } from "../services/webServices";
 import { loadReview } from "../services/webServices";
-
+import ComponentCloseButton from "../components/ComponentCloseButton";
 const { TextArea } = Input;
 
 const RatingContainer = styled.div`
@@ -19,6 +19,12 @@ const RatingContainer = styled.div`
     color: #4169e1;
     box-sizing: border-box;
     justify-content: flex-start;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 999;
+    background-color: #f2f2f2;
+    padding: 11px;
 `;
 
 const ConfirmationButton = styled.div`
@@ -95,17 +101,16 @@ class ReviewInputPanel extends React.Component {
     render() {
         return (
             <RatingContainer>
+                {/* <ComponentCloseButton /> */}
                 <span>
-                    <Rate
-                        //className={"rating"}
+                    <Rate //className={"rating"}
                         allowHalf
                         onChange={this.handleChange}
                     />
                 </span>
                 <div className={styles.Display}>Write a review.</div>
                 <TextArea
-                    type="text"
-                    //className={"review"}
+                    type="text" //className={"review"}
                     placeholder="Review goes here..."
                     onChange={this.handleActiveReviewChange}
                     autosize={{ minRows: 2, maxRows: 6 }}

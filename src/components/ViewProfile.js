@@ -114,7 +114,7 @@ class UpdateProfile extends React.Component {
                             e.stopPropagation();
                             this.props.dispatch(
                                 routerRedux.push({
-                                    pathname: "/UpdateProfile",
+                                    pathname: "/update",
                                 }),
                             );
                         }}

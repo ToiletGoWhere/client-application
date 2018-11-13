@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "dva";
 import styled from "styled-components";
 import IconButton from "@material-ui/core/IconButton";
-import { HighlightOff } from "@material-ui/icons";
+import { Clear } from "@material-ui/icons";
 const CloseButtonContainer = styled.div`
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 10000;
 `;
 
 function ComponentCloseButton(props) {
@@ -16,12 +17,10 @@ function ComponentCloseButton(props) {
         <CloseButtonContainer>
             <IconButton
                 onClick={() => {
-                    props.dispatch({
-                        type: "navigator/clear",
-                    });
+                    props.dispatch({ type: "navigator/clear" });
                 }}
             >
-                <HighlightOff />
+                <Clear />
             </IconButton>
         </CloseButtonContainer>
     );

@@ -10,6 +10,7 @@ import { loadLogin } from "../services/webServices";
 import { setHeader } from "../services/webServices";
 import styled from "styled-components";
 import { routerRedux } from "dva/router";
+import BackButton from "../components/BackButton";
 import "antd/dist/antd.css";
 
 const ConfirmationContainer = styled.div`
@@ -127,6 +128,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className={styles.Root}>
+                <BackButton />
                 <div>
                     <img
                         src="https://i.imgur.com/r8CwlyM.png"

@@ -40,6 +40,7 @@ const ConfirmationButton = styled.div`
     font-weight: 500;
     box-sizing: border-box;
     position: absolute;
+    margin-top: -11px;
 `;
 
 class ToiletInfo extends React.Component {
@@ -171,20 +172,19 @@ class ToiletInfo extends React.Component {
                     Persons give review :
                     {this.props.toiletData.currentToiletSelected.numFeedback}
                 </div>
-                <div className={styles.Display}>
-                    <ConfirmationButton
-                        active
-                        onClick={() =>
-                            this.props.dispatch(
-                                routerRedux.push({
-                                    pathname: "/",
-                                }),
-                            )
-                        }
-                    >
-                        TODO: View all reviews
-                    </ConfirmationButton>
-                </div>
+
+                <ConfirmationButton
+                    active
+                    onClick={() => {
+                        this.props.dispatch({ type: "navigator/clear" });
+                        this.props.dispatch({
+                            type: "navigator/save",
+                            payload: { showReviewList: true },
+                        });
+                    }}
+                >
+                    View all Reviews
+                </ConfirmationButton>
             </div>
         );
     }

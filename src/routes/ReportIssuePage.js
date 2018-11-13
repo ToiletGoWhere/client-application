@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "dva";
 import styles from "./IndexPage.css";
-import ViewProfile from "../components/ViewProfile";
+import ReportIssue from "../components/ReportIssue";
 import BackButton from "../components/BackButton";
-function ViewProfilePage() {
+function ReportIssuePage() {
     return (
         <div className={styles.normal}>
             <BackButton />
-            <ViewProfile />
+            <ReportIssue />
         </div>
     );
 }
 
-ViewProfilePage.propTypes = {};
+ReportIssuePage.propTypes = {};
 
-export default connect()(ViewProfilePage);
+export default connect()(ReportIssuePage);
