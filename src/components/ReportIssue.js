@@ -127,7 +127,10 @@ class ReportIssue extends React.Component {
         // console.log(this.state["multiline"]);
         const reportIssue = async () => {
             const formData = this.state["formData"];
-            formData.append("tId", "5be12c031dcb7e2ad6921d39");
+            formData.append(
+                "tId",
+                this.props.toiletData.currentToiletSelected._id,
+            );
             formData.append("content", this.state["multiline"]);
             formData.append("reportType", this.state["category"]);
             const response = await reportIssueServer(formData);
