@@ -75,6 +75,7 @@ class ContributeNewToilet extends React.Component {
                 type: "navigator/save",
                 payload: {
                     infoBarMessage: "New Toilet Contributed",
+                    toiletInfoShow: true,
                 },
             });
             console.log(response);
