@@ -105,13 +105,13 @@ class ReviewInputPanel extends React.Component {
                 <span>
                     <Rate //className={"rating"}
                         allowHalf
+                        style={{ marginBottom: "10px" }}
                         onChange={this.handleChange}
                     />
                 </span>
-                <div className={styles.Display}>Write a review.</div>
                 <TextArea
                     type="text" //className={"review"}
-                    placeholder="Review goes here..."
+                    placeholder="Say something..."
                     onChange={this.handleActiveReviewChange}
                     autosize={{ minRows: 2, maxRows: 6 }}
                 />
