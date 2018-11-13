@@ -83,6 +83,10 @@ class ToiletInfo extends React.Component {
     componentWillUnmount() {}
 
     render() {
+        const numFeedback =
+            this.props.toiletData.currentToiletSelected.numFeedback > 0
+                ? this.props.toiletData.currentToiletSelected.numFeedback
+                : "Not Enough ";
         return (
             <div className={styles.General}>
                 <ComponentCloseButton />
@@ -168,22 +172,21 @@ class ToiletInfo extends React.Component {
                         }
                     />
                 </div>
-                <div className={styles.Display}>
-                    Persons give review :
-                    {this.props.toiletData.currentToiletSelected.numFeedback}
-                </div>
+                <div className={styles.Display}>{numFeedback} Ratings</div>
 
                 <ConfirmationButton
                     active
                     onClick={() => {
-                        this.props.dispatch({ type: "navigator/clear" });
+                        this.props.dispatch({
+                            type: "navigator/clear",
+                        });
                         this.props.dispatch({
                             type: "navigator/save",
                             payload: { showReviewList: true },
                         });
                     }}
                 >
-                    View all Reviews
+                    Reviews
                 </ConfirmationButton>
             </div>
         );
