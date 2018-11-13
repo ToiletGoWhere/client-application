@@ -9,6 +9,12 @@ const UploadImageWrapper = props => {
             const formData = new FormData();
             formData.append("pic", e.target.files);
             const response = await uploadAvatar(formData);
+            this.props.dispatch({
+                type: "navigator/save",
+                payload: {
+                    infoBarMessage: "Avatar Uploaded",
+                },
+            });
         } catch (error) {}
     };
     return (

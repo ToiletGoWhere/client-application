@@ -131,6 +131,12 @@ class ReportIssue extends React.Component {
             formData.append("content", this.state["multiline"]);
             formData.append("reportType", this.state["category"]);
             const response = await reportIssueServer(formData);
+            this.props.dispatch({
+                type: "navigator/save",
+                payload: {
+                    infoBarMessage: "Issue Reported",
+                },
+            });
             console.log(response);
         };
         reportIssue();

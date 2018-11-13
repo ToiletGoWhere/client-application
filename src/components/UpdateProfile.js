@@ -117,6 +117,12 @@ class UpdateProfile extends React.Component {
                 toiletType: this.state["category"],
             };
             const response = await updateProfileServer(payload);
+            this.props.dispatch({
+                type: "navigator/save",
+                payload: {
+                    infoBarMessage: "Profile Updated",
+                },
+            });
             console.log(response);
         };
         updateProfile();

@@ -142,6 +142,12 @@ class ReviewInputPanel extends React.Component {
         };
         const response = await postReview(payload);
         console.log(response);
+        this.props.dispatch({
+            type: "navigator/save",
+            payload: {
+                infoBarMessage: "Review Posted",
+            },
+        });
         // };
         // submitReview();
     }

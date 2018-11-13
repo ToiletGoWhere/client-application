@@ -71,6 +71,12 @@ class ContributeNewToilet extends React.Component {
                 type: this.props.toiletData.gender,
             };
             const response = await contributeNewToiletServer(payload);
+            this.props.dispatch({
+                type: "navigator/save",
+                payload: {
+                    infoBarMessage: "New Toilet Contributed",
+                },
+            });
             console.log(response);
         };
         contributeNewToilet();

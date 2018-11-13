@@ -75,6 +75,12 @@ class ToiletOptions extends React.Component {
             gender: this.props.toiletData.gender,
         });
         console.log(response);
+        this.props.dispatch({
+            type: "navigator/save",
+            payload: {
+                infoBarMessage: "Toilet Found",
+            },
+        });
         for (var i = 0; i < this.props.toiletData.markerList.length; i++) {
             this.props.toiletData.markerList[i].setMap(null);
         }

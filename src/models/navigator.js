@@ -8,6 +8,7 @@ export default {
         confirmToiletShow: false,
         reviewInputItemShow: false,
         showReviewList: false,
+        infoBarMessage: "",
     },
 
     subscriptions: {
