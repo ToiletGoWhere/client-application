@@ -10,6 +10,7 @@ import styles from "./ReviewListItem.css";
 import ReviewInputPanel from "./ReviewInputPanel";
 import { List, Avatar } from "antd";
 import { loadReview } from "../services/webServices";
+import { ListItemSecondaryAction } from "@material-ui/core";
 
 class ReviewListItem extends React.Component {
     constructor(props) {
@@ -20,11 +21,7 @@ class ReviewListItem extends React.Component {
     }
 
     componentDidMount() {
-        this.handleReviewSearch().then(res => {
-            this.setState({
-                activeReviewList: [res.data],
-            });
-        });
+        this.handleReviewSearch();
     }
 
     componentWillUnmount() {}
@@ -33,7 +30,8 @@ class ReviewListItem extends React.Component {
         const response = await loadReview(
             this.props.toiletData.currentToiletSelected._id,
         );
-        console.log(response);
+        this.setState({ activeReviewList: response.data });
+        return Promise.resolve();
     }
 
     render() {
@@ -45,20 +43,25 @@ class ReviewListItem extends React.Component {
                     <List>
                         {this.state.activeReviewList.map((item, i) => {
                             return (
-                                <ListItem key={i}>
-                                    <List.Item.Meta
-                                        avatar={item.user.avatar}
-                                        title={item.user.username}
-                                        description={item.content}
-                                    />
-
-                                    <Rate
-                                        className={styles.DisplayRat}
-                                        allowHalf
-                                        disabled
-                                        value={item.rating}
-                                    />
-                                </ListItem>
+                                <div>
+                                    <ListItem key={i * 2 - 1}>
+                                        <Avatar src={item.user.avatar} />
+                                        <List.Item.Meta
+                                            title={item.user.username}
+                                        />
+                                        <Rate
+                                            className={styles.DisplayRat}
+                                            allowHalf
+                                            disabled
+                                            value={item.rating}
+                                        />
+                                    </ListItem>
+                                    <ListItem key={i * 2}>
+                                        <List.Item.Meta
+                                            description={item.content}
+                                        />
+                                    </ListItem>
+                                </div>
                             );
                         })}
                     </List>
