@@ -128,6 +128,12 @@ class UpdateProfile extends React.Component {
                 },
             });
             console.log(response);
+            this.props.dispatch({
+                type: "toiletData/save",
+                payload: {
+                    currentUser: response.data,
+                },
+            });
         };
         updateProfile();
     };
