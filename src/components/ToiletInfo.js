@@ -22,8 +22,7 @@ const ConfirmationButton = styled.div`
     width: 300px;
     border-radius: 5px;
     padding-top: 8px;
-    left: 50%;
-    transform: translate(-50%, 50%);
+    margin: 8px auto;
     cursor: pointer;
     background: linear-gradient(
         -45deg,
@@ -39,8 +38,6 @@ const ConfirmationButton = styled.div`
     font-size: 18px;
     font-weight: 500;
     box-sizing: border-box;
-    position: absolute;
-    margin-top: -11px;
 `;
 
 class ToiletInfo extends React.Component {
@@ -174,20 +171,38 @@ class ToiletInfo extends React.Component {
                 </div>
                 <div className={styles.Display}>{numFeedback} Ratings</div>
 
-                <ConfirmationButton
-                    active
+                <div>
+                    <ConfirmationButton
+                        active
+                        onClick={() => {
+                            this.props.dispatch({
+                                type: "navigator/clear",
+                            });
+                            this.props.dispatch({
+                                type: "navigator/save",
+                                payload: { showReviewList: true },
+                            });
+                        }}
+                    >
+                        Reviews
+                    </ConfirmationButton>
+                </div>
+                <div
+                    style={{
+                        width: "100%",
+                        textAlign: "center",
+                        color: "#4169e1",
+                    }}
                     onClick={() => {
-                        this.props.dispatch({
-                            type: "navigator/clear",
-                        });
-                        this.props.dispatch({
-                            type: "navigator/save",
-                            payload: { showReviewList: true },
-                        });
+                        this.props.dispatch(
+                            routerRedux.push({
+                                pathname: "/report",
+                            }),
+                        );
                     }}
                 >
-                    Reviews
-                </ConfirmationButton>
+                    Report toilet issue
+                </div>
             </div>
         );
     }
