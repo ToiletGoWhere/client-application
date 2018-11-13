@@ -156,9 +156,9 @@ class MapComponent extends React.Component {
       curMarker.setPosition(this.state.currentLocation);
       curMarker.setMap(map);
 
-      this.props.dispatch({
-        type: "navigator/clear"
-      });
+      // this.props.dispatch({
+      //   type: "navigator/clear"
+      // });
     });
   }
 
@@ -219,10 +219,12 @@ class MapComponent extends React.Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.navigator.toiletContributeShow === false) {
+    if (this.props.navigator.toiletContributeShow == false) {
       if (this.state.markerUpload != null) {
         this.state.markerUpload.setMap(null);
       }
+
+      // this.state.markerUpload.setMap(null);
     }
 
     if (this.props.toiletData.updatedResults) {
@@ -307,6 +309,18 @@ class MapComponent extends React.Component {
                 var newUrl = new URL(url + origin + destination);
                 var win = window.open(newUrl, "_blank");
                 win.focus();
+
+                if (
+                  this.props.toiletData.currentToiletSelected.confirmed == false
+                ) {
+                  this.props.dispatch({
+                    type: "navigator/save",
+                    payload: {
+                      confirmToiletShow: true,
+                      toiletInfoShow: false
+                    }
+                  });
+                }
               }}
             />
           </DirectionButton>
