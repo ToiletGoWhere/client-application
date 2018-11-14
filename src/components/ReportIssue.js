@@ -122,11 +122,27 @@ class ReportIssue extends React.Component {
         // console.log(this.state['multiline']);
     };
 
-    handleSubmit = event => {
+    handleSubmit = e => {
         // console.log("handleSubmit function called");
         // console.log(this.state["category"]);
         // console.log(this.state["multiline"]);
         const reportIssue = async () => {
+            if (
+                !this.state["formData"] ||
+                !this.state["multiline"] ||
+                !this.state["category"]
+            ) {
+                console.log("Report is not compeleted.");
+                // FIXME: infoBar does not appear on top of this component
+                this.props.dispatch({
+                    type: "navigator/save",
+                    payload: {
+                        infoBarMessage:
+                            "Please provide the detail and a picture.",
+                    },
+                });
+                return;
+            }
             const formData = this.state["formData"];
             formData.append(
                 "tId",
@@ -141,12 +157,10 @@ class ReportIssue extends React.Component {
                     infoBarMessage: "Issue Reported",
                 },
             });
+            this.props.dispatch(routerRedux.push({ pathname: "/" }));
             console.log(response);
         };
         reportIssue();
-        this.props.dispatch(
-            routerRedux.push({ pathname: "/" }),
-        );
     };
     render() {
         const { classes } = this.props;
