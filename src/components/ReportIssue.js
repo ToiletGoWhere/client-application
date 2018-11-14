@@ -9,6 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { reportIssueServer } from "../services/webServices";
+import { routerRedux } from "dva/router";
 
 const ReportIssuesContainer = styled.div`
     color: #4169e1;
@@ -143,6 +144,9 @@ class ReportIssue extends React.Component {
             console.log(response);
         };
         reportIssue();
+        this.props.dispatch(
+            routerRedux.push({ pathname: "/" }),
+        );
     };
     render() {
         const { classes } = this.props;
