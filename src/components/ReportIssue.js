@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { reportIssueServer } from "../services/webServices";
 import { routerRedux } from "dva/router";
+import InformationBar from "../components/InformationBar";
 
 const ReportIssuesContainer = styled.div`
     color: #4169e1;
@@ -133,7 +134,6 @@ class ReportIssue extends React.Component {
                 !this.state["category"]
             ) {
                 console.log("Report is not compeleted.");
-                // FIXME: infoBar does not appear on top of this component
                 this.props.dispatch({
                     type: "navigator/save",
                     payload: {
@@ -229,6 +229,7 @@ class ReportIssue extends React.Component {
                         Submit
                     </ConfirmationButton>
                 </form>
+                <InformationBar />
             </ReportIssuesContainer>
         );
     }
